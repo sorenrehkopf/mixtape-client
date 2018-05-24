@@ -10,7 +10,6 @@ const searchSongCollection = (data) => async(dispatch, getState) => {
 
 	const { data: { songs } } = await Api.get(`songs/search/${encodeURIComponent(JSON.stringify(data))}`);
 
-	console.log(songs);
 	dispatch({ type: SEARCH_SONGS_FINISH, payload: { queryResults: songs } });
 };
 

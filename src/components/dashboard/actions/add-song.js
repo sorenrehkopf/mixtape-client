@@ -33,8 +33,9 @@ const addSong = () => async(dispatch, getState) => {
 
 	const nextSong = importQueue[0];
 	
+	dispatch(selectSong(nextSong, true));
+	
 	if (nextSong) {
-		dispatch(selectSong(nextSong, true));
 		dispatch({ type: SLOW_IMPORT_FINISH, payload: { tracks: importQueue } });
 	}
 };

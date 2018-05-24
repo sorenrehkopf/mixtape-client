@@ -13,8 +13,7 @@ import style from './style';
 
 class AddSongDialog extends Component {
 	render() {
-		console.log(this.props);
-		const { addSong, addTag, isSelectedSongNew, removeTag, selectedSong: { 
+		const { addSong, addTag, importQueue, isSelectedSongNew, removeTag, selectedSong: { 
 			albumName,
 			artistName,
 			danceability,
@@ -38,7 +37,9 @@ class AddSongDialog extends Component {
 
 		return(
 			<div className={style.main}>
-				<h2 className={style.header}>Adding song</h2>
+				<div className={style.header_info}>
+					<h2 className={style.header}>Adding song</h2>
+				</div>
 				<div className={style.info}>
 					<span className={style.info__item}><em>{name}</em> <span>by</span> </span>
 					<span className={`${style.info__item} ${style.small}`}>{artistName} <span>from</span> </span>
@@ -76,7 +77,8 @@ class AddSongDialog extends Component {
 	}
 }
 
-const mapStateToProps = ({ main: { currentUser: { Tags: tags }, isSelectedSongNew, selectedSong } }) => ({
+const mapStateToProps = ({ main: { currentUser: { Tags: tags }, isSelectedSongNew, selectedSong, importQueue } }) => ({
+	importQueue,
 	isSelectedSongNew,
 	selectedSong,
 	tags

@@ -38,7 +38,7 @@ class ImportPlaylistDialog extends Component {
 	quickImport = () => {
 		const { quickImport } = this.props;
 		const { importingFast, fastTags } = this.state;
-		console.log(importingFast);
+		
 		if (!importingFast) {
 			this.setState({
 				importingFast: true

@@ -10,7 +10,6 @@ class PlaylistSuccess extends Component {
 	}
 
 	render() {
-		console.log(this.props.playlist);
 		const { 
 			play,
 			props: {

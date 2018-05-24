@@ -24,7 +24,6 @@ class Form extends Component {
 	}
 
 	handleSubmit = (e) => {
-		console.log('submitting!!');
 		const { props: { clearOnSubmit, onSubmit }, state: { formData, nameElements } } = this;
 		e.preventDefault();
 
@@ -59,7 +58,6 @@ class Form extends Component {
 	}
 
 	handleInput = ({ target }) => {
-		console.log('changing');
 		const { name, value, type } = target;
 		const { props: { onChange }, state: { formData } } = this;
 		const delta = {};

@@ -66,7 +66,18 @@ const config = {
 	},
 	plugins: [
 		new ExtractTextPlugin("style.css")
-	]
+	],
+	devServer: {
+		contentBase: buildDir,
+		historyApiFallback: {
+			index: `index.html`
+		},
+		inline: true,
+		port:4400,
+		proxy: {
+			"/api": "http://localhost:3000/api"
+		}
+	}
 };
 
 module.exports = config;

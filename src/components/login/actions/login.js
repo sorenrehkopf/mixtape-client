@@ -22,7 +22,6 @@ const login = () => (dispatch, getState) => {
 			};
 
 			Api.setAuthToken(authToken);
-			console.log('the payload!1', payload);
 			dispatch({ type: LOGIN_FINISH, payload });
 			loginWindow.close();
 		}

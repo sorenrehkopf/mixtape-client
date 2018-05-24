@@ -15,8 +15,8 @@ const updateSongData = (update) => (dispatch, getState) => {
 				...tags,
 				[tagKey]: update[keyWithHash]
 			}
-		}
-		console.log(update);
+		};
+
 	};
 	dispatch({ type: UPDATE_SONG_DATA, payload: { update }});
 };

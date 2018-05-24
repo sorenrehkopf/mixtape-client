@@ -13,11 +13,7 @@ import {
 	SLOW_IMPORT_FINISH
 } from '_/components/import-playlists/actions/types';
 
-const initialState = {
-	authenticated: false,
-	authenticating: false,
-	importQueue: []
-};
+const initialState = {};
 
 const mainReducer = (state = initialState, { type, payload }) => {
 	switch (type) {
