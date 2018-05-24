@@ -10,7 +10,7 @@ const login = () => (dispatch, getState) => {
 	dispatch({ type: LOGIN_START });
 
 	const url = ({
-			"www.myxtape.com":  'https://www.myxtyp.com/api/auth/login',
+			"www.myxtape.io":  'https://www.myxtyp.com/api/auth/login',
 			"localhost": 'http://localhost:3000/api/auth/login'
 		})[window.location.hostname];
 
