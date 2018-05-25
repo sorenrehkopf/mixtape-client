@@ -8,6 +8,7 @@ import Autocomplete from '_/components/partials/autocomplete';
 
 import addSong from '_/components/dashboard/actions/add-song';
 import updateSongData from '_/components/dashboard/actions/update-song-data';
+import skipAheadInQueue from '_/components/partials/add-song-dialog/actions/skip-ahead-in-queue';
 
 import style from './style';
 
@@ -29,7 +30,7 @@ class AddSongDialog extends Component {
 			timeSignature,
 			valence,
 			...restOfSong 
-		}, tags, updateSongData } = this.props;
+		}, skipAheadInQueue, tags, updateSongData } = this.props;
 		const values = { energy, tempo, key, valence, danceability, loudness, timeSignature };
 		const defaultInputs = Object.keys(values).map(key => <Tag key={key} name={key} value={values[key]} />);
 		const tagInputs = Object.keys(songTags).map(key => <Tag key={key} name={`#${key}`} value={songTags[key]} remove={() => removeTag(key)} />);
@@ -39,6 +40,19 @@ class AddSongDialog extends Component {
 			<div className={style.main}>
 				<div className={style.header_info}>
 					<h2 className={style.header}>Adding song</h2>
+					<div className={style.queue_info}>
+						<span className={style.queue_info_text}><strong>{importQueue.length} in queue</strong></span>
+						{importQueue.length > 0 && (
+							<span className={style.queue_skip_button} onClick={() => skipAheadInQueue(1)}> 
+								skip 1<i className="fas fa-step-forward"/>
+							</span>
+						)}
+						{importQueue.length > 10 && (
+							<span className={style.queue_skip_button} onClick={() => skipAheadInQueue(10)}>
+								skip 10<i className="fas fa-fast-forward"/>
+							</span>
+						)}
+					</div>
 				</div>
 				<div className={style.info}>
 					<span className={style.info__item}><em>{name}</em> <span>by</span> </span>
@@ -96,6 +110,7 @@ const mapDispatchToProps = (dispatch) => ({
 		update[`#${tagName}`] = false;
 		dispatch(updateSongData(update))
 	},
+	skipAheadInQueue: n => dispatch(skipAheadInQueue(n)),
 	updateSongData: ({ delta }) => dispatch(updateSongData(delta))
 });
 

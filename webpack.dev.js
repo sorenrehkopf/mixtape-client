@@ -6,6 +6,7 @@ const buildDir = path.resolve(__dirname, 'public');
 
 module.exports = merge(common, {
 	mode: 'development',
+	watch: true,
 	devServer: {
 		contentBase: buildDir,
 		historyApiFallback: {

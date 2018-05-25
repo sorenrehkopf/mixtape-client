@@ -28,6 +28,25 @@
 .header {
 	font-size: $larger;
 	margin: 0px 0px 10px;
+	flex: 1;
+}
+
+.header_info {
+	display: flex;
+	justify-content: space-between;	
+	align-items: center;
+}
+
+.queue_info {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex: 1;
+}
+
+.queue_skip_button {
+	cursor: pointer;
+	font-size: $larger;
 }
 
 .player_and_time {
