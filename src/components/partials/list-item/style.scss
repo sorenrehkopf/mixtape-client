@@ -43,3 +43,11 @@
 .time {
 	flex: none;
 }
+
+@media (max-width: 800px) {
+	.main {
+		&__item {
+			white-space: normal;
+		}
+	}
+}

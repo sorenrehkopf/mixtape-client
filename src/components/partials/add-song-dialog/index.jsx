@@ -41,7 +41,7 @@ class AddSongDialog extends Component {
 				<div className={style.header_info}>
 					<h2 className={style.header}>Adding song</h2>
 					<div className={style.queue_info}>
-						<span className={style.queue_info_text}><strong>{importQueue && importQueue.length} in queue</strong></span>
+						{importQueue && <span className={style.queue_info_text}><strong>{importQueue.length} in queue</strong></span>}
 						{importQueue && importQueue.length > 0 && (
 							<span className={style.queue_skip_button} onClick={() => skipAheadInQueue(1)}> 
 								skip 1<i className="fas fa-step-forward"/>
@@ -83,8 +83,8 @@ class AddSongDialog extends Component {
 					<button className={`pure-button ${style.tag_button}`}><i className="fas fa-plus"/> add a tag!</button>
 				</Form>
 				<button form="add-song-form" type="submit" className={`pure-button ${style.button}`}>
-					<i className="fas fa-plus"/>&nbsp;
-					{isSelectedSongNew ? 'Add' : 'Update'} song!
+					<i className="fas fa-plus"/>
+					{isSelectedSongNew ? ' Add' : ' Update'} song!
 				</button>
 			</div>
 		)

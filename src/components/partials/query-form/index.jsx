@@ -132,14 +132,15 @@ class QueryForm extends Component {
 							params exclusive
 						</label>
 					</form>
+					<p>Simple: </p>
 					<div className={style['tag-list']}>
-						<p>Tags: </p><br/>
 						{includeTags}
 						<Form className={`pure-form ${style.include_form}`} onSubmit={({ formData: { tagName }}) => this.add('include', 'tags', tagName)} clearOnSubmit={true}>
 							<Autocomplete name="tagName" className={`pure-input ${style.input}`} options={tags} />
 							<button className={`pure-button ${style['add-button']}`}>add</button>
 						</Form>
 					</div>
+					<p>Conditional: </p>
 					{includeParams}
 					<QueryParamInput options={options} queryParamAddAction={({ formData: { newParamName, ...param } }) => this.add('include', 'params', newParamName, param)} />
 				</div>
@@ -152,6 +153,7 @@ class QueryForm extends Component {
 							tags exclusive
 						</label>
 					</form>
+					<p>Simple: </p>
 					<div className={style['tag-list']}>
 						{excludeTags}
 						<Form className={`pure-form ${style.include_form}`} onSubmit={({ formData: { tagName }}) => this.add('exclude', 'tags', tagName)} clearOnSubmit={true}>

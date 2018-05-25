@@ -41,6 +41,7 @@
 
 .image {
 	border-radius: 50%;
+	flex-shrink: 0;
 	overflow: hidden;
 	height: 50px;
 	width: 50px;
@@ -48,4 +49,12 @@
 
 .time {
 	flex: none;
+}
+
+@media (max-width: 800px) {
+	.main {
+		&__item {
+			white-space: normal;
+		}
+	}
 }
