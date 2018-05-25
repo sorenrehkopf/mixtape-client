@@ -63,3 +63,26 @@
 	background-color: $jet;
 	color: white;
 }
+
+@media (max-width: 800px) {
+	.main {
+		display: block;
+		overflow: auto;
+		width: 100vw;
+		height: calc(100vh - 92px);
+		padding: 10px;
+		box-sizing: border-box;
+	}
+
+	.options {
+		flex-direction: column;
+	}
+
+	.option {
+		padding: 20px;
+		&.serial {
+			border-right: none;
+			border-bottom: 2px solid $jet;
+		}
+	}
+}

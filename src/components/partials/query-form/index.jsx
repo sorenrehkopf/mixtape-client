@@ -119,7 +119,7 @@ class QueryForm extends Component {
 		return(
 			<div>
 				<div className={style.include}>
-					<label className={style['section-title']}>Include</label>
+					<label className={style['section-title']}><strong>Include</strong></label>
 					<form className={`pure-form ${style.exclusive_toggle}`}>
 						<label className={`pure-checkbox ${style.toggle_label}`} title="'and' instead of 'or' for tags">
 							<input type="checkbox" onChange={() => this.toggleExclusive('include', 'tags')} />
@@ -133,6 +133,7 @@ class QueryForm extends Component {
 						</label>
 					</form>
 					<div className={style['tag-list']}>
+						<p>Tags: </p><br/>
 						{includeTags}
 						<Form className={`pure-form ${style.include_form}`} onSubmit={({ formData: { tagName }}) => this.add('include', 'tags', tagName)} clearOnSubmit={true}>
 							<Autocomplete name="tagName" className={`pure-input ${style.input}`} options={tags} />
@@ -144,7 +145,7 @@ class QueryForm extends Component {
 				</div>
 
 				<div>
-					<label className={style['section-title']}>Exclude</label>
+					<label className={style['section-title']}><strong>Exclude</strong></label>
 					<form className={`pure-form ${style.exclusive_toggle}`}>
 						<label className={`pure-checkbox ${style.toggle_label}`} title="'and' instead of 'or' for tags">
 							<input type="checkbox" onChange={() => this.toggleExclusive('exclude', 'tags')} />

@@ -41,13 +41,13 @@ class AddSongDialog extends Component {
 				<div className={style.header_info}>
 					<h2 className={style.header}>Adding song</h2>
 					<div className={style.queue_info}>
-						<span className={style.queue_info_text}><strong>{importQueue.length} in queue</strong></span>
-						{importQueue.length > 0 && (
+						<span className={style.queue_info_text}><strong>{importQueue && importQueue.length} in queue</strong></span>
+						{importQueue && importQueue.length > 0 && (
 							<span className={style.queue_skip_button} onClick={() => skipAheadInQueue(1)}> 
 								skip 1<i className="fas fa-step-forward"/>
 							</span>
 						)}
-						{importQueue.length > 10 && (
+						{importQueue && importQueue.length > 10 && (
 							<span className={style.queue_skip_button} onClick={() => skipAheadInQueue(10)}>
 								skip 10<i className="fas fa-fast-forward"/>
 							</span>

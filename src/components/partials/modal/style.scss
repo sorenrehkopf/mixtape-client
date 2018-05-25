@@ -1,3 +1,5 @@
+@import '~_/styles/pallette';
+
 .main {
 	align-items: center;
 	background-color: rgba(100, 100, 100, .3);
@@ -9,4 +11,32 @@
 	top: 0px;
 	width: 100vw;
 	z-index: 100;
+}
+
+.close_bar {
+	display: none;
+}
+
+.container {
+	margin: 0px;
+	max-width: 100vw;
+}
+
+@media (max-height: 800px) {
+	.main {
+		top: 50px;
+		display: block;
+		box-sizing: border-box;
+	}
+
+	.close_bar {
+		display: block;
+		background-color: $jet;
+		padding: 5px 15px;
+		box-sizing: border-box;
+		font-size: $larger;
+		border-top: 1px solid $granite_grey;
+		text-align: right;
+		color: white;
+	}
 }

@@ -1,6 +1,7 @@
 @import '~_/styles/pallette';
 
 .main {
+	flex-shrink: 0;
 	position: relative;
 	background-color: black;
 	border-radius: 50%;

@@ -6,7 +6,10 @@ class Modal extends Component {
 		const { children, onBackgroundClick } = this.props;
 		return(
 			<div className={style.main} onClick={onBackgroundClick}>
-				<div onClick={e => e.stopPropagation()}>
+				<div className={style.container} onClick={e => e.stopPropagation()}>
+					<div className={style.close_bar}>
+						<span onClick={onBackgroundClick}><i className="fas fa-times" /></span>
+					</div>
 					{children}
 				</div>
 			</div>
