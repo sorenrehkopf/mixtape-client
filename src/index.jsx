@@ -43,7 +43,8 @@ let currentUser;
 		{ 
 			main: { 
 				authenticated: !!currentUser, 
-				currentUser
+				currentUser,
+				importQueue: []
 			}, 
 			songs: { 
 				songs: (currentUser && currentUser.Songs) || [],
