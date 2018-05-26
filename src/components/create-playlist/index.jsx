@@ -34,7 +34,7 @@ class CreatePlaylist extends Component {
 					<h2 className={style.sub_header}>Song Criteria</h2>
 					<QueryForm onSubmit={createPlaylist} tags={tags} options={options} submitText="Create!" />
 				</div>)}
-				{!loading && createdPlaylist && <PlaylistSuccess clearCreatedPlaylist={clearCreatedPlaylist} playlist={createdPlaylist} />}
+				{!loading && createdPlaylist ? <PlaylistSuccess clearCreatedPlaylist={clearCreatedPlaylist} playlist={createdPlaylist} /> : null}
 				{loading && <p>loading...</p>}
 			</div>
 		)

@@ -9,8 +9,21 @@ class PlaylistSuccess extends Component {
 		Api.put('spotify/play', { uri });
 	}
 
+	get height() {
+		return window.innerHeight > 800 ? 600 : 380;
+	}
+
+	get width() {
+		return window.innerWidth > 800 ? 500 : 300;
+	}
+
+	get currentMSKey() {
+		return Date.now();
+	}
+
 	render() {
 		const { 
+			currentMSKey,
 			play,
 			props: {
 				clearCreatedPlaylist,
@@ -18,24 +31,32 @@ class PlaylistSuccess extends Component {
 					external_urls: {
 						spotify: viewUrl
 					},
+					uri,
 					name
 				}
-			} 
+			},
+			refs: {
+				player
+			},
+			height,
+			width
 		} = this;
+
 		return(
 			<div>
 				<h2 className={style.success_header}>Success!</h2>
 				<p>Your playlist <em><strong>{name}</strong></em> was successfully created.</p>
-				<button className={style.button} onClick={play}>
-					<i className="fas fa-play"/>
-					<span>Play</span>
-				</button>
-				<a href={viewUrl} target="_blank">
-					<button className={style.button}>
-						<i className="fas fa-external-link-square-alt"/>
-						<span>View</span>
-					</button>
-				</a>
+				<p>**If you're rapidly generating new versions of your default playlist, your changes may not be reflected here right away, but they have been made.**</p>
+				<iframe
+					ref="player"
+					src={`https://open.spotify.com/embed?uri=${uri}&timestamp=${currentMSKey}`} 
+					width={width} 
+					height={height}
+					frameBorder="0"
+					allowtransparency="true"
+					allow="encrypted-media">
+				</iframe>
+				<br/>
 				<button className={`${style.button} ${style.clear}`} onClick={clearCreatedPlaylist}>
 					<i className="fas fa-sync"/>
 					<span>Make Another</span>
