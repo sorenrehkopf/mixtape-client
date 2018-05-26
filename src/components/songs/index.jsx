@@ -8,6 +8,7 @@ import style from './style';
 import clearSearchResults from './actions/clear-search-results';
 import searchSongCollection from './actions/search-song-collection';
 import selectSong from '_/components/dashboard/actions/select-song';
+import loadSongs from '_/components/songs/actions/load-songs';
 
 import { defaultQueryFields } from '_/services/get-collections';
 
@@ -16,6 +17,14 @@ class Songs extends Component {
 		super()
 		this.state = {
 			showSearchModal: false
+		}
+	}
+
+	componentDidMount() {
+		const { loadSongs, songs } = this.props;
+
+		if (!songs) {
+			loadSongs();
 		}
 	}
 
@@ -34,7 +43,7 @@ class Songs extends Component {
 	render() {
 		const { clearSearchResults, editSong, queryResults, search, selectSong, songs, tags } = this.props;
 		const { showSearchModal } = this.state;
-		const songsSource = search ? queryResults : songs;
+		const songsSource = (search ? queryResults : songs) || [];
 
 		const songsList = songsSource.map(({
 			albumName,
@@ -81,6 +90,7 @@ class Songs extends Component {
 					</Modal>
 				}
 				<div>
+					{!songs && <p>loading...</p>}
 					{songsList}
 				</div>
 			</div>
@@ -113,6 +123,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => ({
 	clearSearchResults: () => dispatch(clearSearchResults()),
+	loadSongs: () => dispatch(loadSongs()),
 	selectSong: (song) => dispatch(selectSong(song)),
 	searchSongs: (data) => dispatch(searchSongCollection(data))
 });

@@ -46,8 +46,7 @@ let currentUser;
 				currentUser,
 				importQueue: []
 			}, 
-			songs: { 
-				songs: (currentUser && currentUser.Songs) || [],
+			songs: {
 				query: {
 					include: {
 						tags: [],

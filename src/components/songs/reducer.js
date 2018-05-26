@@ -1,5 +1,7 @@
 import {
 	CLEAR_SEARCH_RESULTS,
+	LOAD_SONGS_START,
+	LOAD_SONGS_FINISH,
 	SEARCH_SONGS_FINISH,
 	SEARCH_SONGS_START
 } from './actions/types'
@@ -36,10 +38,10 @@ const songsReducer = (state = initialState, { type, payload }) => {
 				search: false,
 				queryResults: []
 			}
-		case LOGIN_FINISH:
+		case LOAD_SONGS_FINISH:
 			return {
 				...state,
-				songs: payload.user && payload.user.Songs
+				songs: payload.songs
 			}
 		case QUICK_IMPORT_FINISH:
 			return {
