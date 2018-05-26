@@ -12,27 +12,22 @@ import skipAheadInQueue from '_/components/partials/add-song-dialog/actions/skip
 
 import style from './style';
 
+import { songDataValues } from '_/services/get-collections';
+
 class AddSongDialog extends Component {
 	render() {
 		const { addSong, addTag, importQueue, isSelectedSongNew, removeTag, selectedSong: { 
 			albumName,
 			artistName,
-			danceability,
 			duration,
-			energy,
 			imageUrl,
-			key,
-			loudness,
 			name,
 			previewUrl,
 			tags: songTags,
-			tempo,
-			timeSignature,
-			valence,
-			...restOfSong 
+			...songData
 		}, skipAheadInQueue, tags, updateSongData } = this.props;
-		const values = { energy, tempo, key, valence, danceability, loudness, timeSignature };
-		const defaultInputs = Object.keys(values).map(key => <Tag key={key} name={key} value={values[key]} />);
+		
+		const defaultInputs = Object.keys(songDataValues).map(key => <Tag key={key} name={key} type={songDataValues[key].type} title={songDataValues[key].tip} value={songData[key]} />);
 		const tagInputs = Object.keys(songTags).map(key => <Tag key={key} name={`#${key}`} value={songTags[key]} remove={() => removeTag(key)} />);
 		const inputs = [...defaultInputs, ...tagInputs];
 

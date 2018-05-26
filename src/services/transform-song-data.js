@@ -16,10 +16,12 @@ const keyMappings = [
 	'B',
 ];
 
-const convertFromSpotify = ({ danceability, duration_ms, energy, id, loudness, key, tempo, time_signature, valence, ...everythingElse}) => ({
+const convertFromSpotify = ({ acousticness, danceability, duration_ms, energy, instrumentalness, id, loudness, key, tempo, time_signature, valence, ...everythingElse}) => ({
 	...everythingElse,
+	acousticness: round(acousticness *10, 1),
 	danceability: round(danceability * 10, 1),
 	energy: round(energy * 10, 1),
+	instrumentalness: round(instrumentalness *10, 1),
 	key: keyMappings[key],
 	loudness: round(loudness, 1),
 	spotifyId: id,

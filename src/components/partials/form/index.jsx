@@ -62,8 +62,12 @@ class Form extends Component {
 		const { props: { onChange }, state: { formData } } = this;
 		const delta = {};
 		if (!name || type == 'checkbox') return; 
-		const transformedValue = target.getAttribute('uppercase') ? value.toUpperCase() : value;
-		delta[name] = target.getAttribute('type') == 'text' ? transformedValue : parseFloat(value);
+		if (value) {
+			const transformedValue = target.getAttribute('uppercase') ? value.toUpperCase() : value;
+			delta[name] = target.getAttribute('type') == 'text' ? transformedValue : parseFloat(value);
+		} else {
+			delta[name] = value;
+		}
 		
 		this.setState({ 
 			formData: {

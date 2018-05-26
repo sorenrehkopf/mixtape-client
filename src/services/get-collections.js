@@ -1,5 +1,8 @@
 export const defaultQueryFields = [
 	{
+		name: 'ACOUSTICNESS'
+	},
+	{
 		name: 'ALBUMNAME'
 	},
 	{
@@ -10,6 +13,9 @@ export const defaultQueryFields = [
 	},
 	{
 		name: 'ENERGY'
+	},
+	{
+		name: 'INSTRUMENTALNESS'
 	},
 	{
 		name: 'KEY'
@@ -27,6 +33,46 @@ export const defaultQueryFields = [
 		name: 'VALENCE'
 	}
 ];
+
+export const songDataValues = {
+	acousticness: {
+		tip: 'How acoustic the song sounds',
+		type: 'number'
+	},
+	energy: {
+		tip: 'The overall energy level for the song',
+		type: 'number'
+	},
+	instrumentalness: {
+		tip: 'How instrumental the song sounds',
+		type: 'number'
+	},
+	tempo: {
+		tip: 'BPM (beats per minute) for the song',
+		type: 'number'
+	},
+	key: {
+		tip: 'The musical key (A - G#) for the song',
+		type: 'text'
+	},
+	valence: {
+		tip: 'How "happy" or "sad" the song sounds - higher is happier',
+		type: 'number'
+	},
+	danceability: {
+		tip: 'How danceable the song sounds',
+		type: 'number'
+	},
+	loudness: {
+		tip: 'The overall decibel level of the song',
+		type: 'number'
+	},
+	timeSignature: {
+		tip: 'The number of beats in each measure',
+		type: 'text'
+	} 
+};
+
 
 export const paramTypes = {
 	loose_equivalence:{
