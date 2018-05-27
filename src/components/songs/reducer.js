@@ -41,6 +41,8 @@ const songsReducer = (state = initialState, { type, payload }) => {
 		case LOAD_SONGS_FINISH:
 			return {
 				...state,
+				loading: false,
+				loaded: true,
 				songs: payload.songs
 			}
 		case QUICK_IMPORT_FINISH:

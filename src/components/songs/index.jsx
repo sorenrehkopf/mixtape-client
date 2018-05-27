@@ -21,9 +21,9 @@ class Songs extends Component {
 	}
 
 	componentDidMount() {
-		const { loadSongs, songs } = this.props;
+		const { loadSongs, loaded } = this.props;
 
-		if (!songs) {
+		if (!loaded) {
 			loadSongs();
 		}
 	}
@@ -41,9 +41,9 @@ class Songs extends Component {
 	}
 
 	render() {
-		const { clearSearchResults, editSong, queryResults, search, selectSong, songs, tags } = this.props;
+		const { clearSearchResults, editSong, loaded, queryResults, search, selectSong, songs, tags } = this.props;
 		const { showSearchModal } = this.state;
-		const songsSource = (search ? queryResults : songs) || [];
+		const songsSource = search ? queryResults : songs;
 
 		const songsList = songsSource.map(({
 			albumName,
@@ -90,7 +90,7 @@ class Songs extends Component {
 					</Modal>
 				}
 				<div>
-					{!songs && <p>loading...</p>}
+					{!loaded && <p>loading...</p>}
 					{songsList}
 				</div>
 			</div>
@@ -100,6 +100,7 @@ class Songs extends Component {
 
 const mapStateToProps = ({ 
 	songs: {
+		loaded,
 		queryResults,
 		search,
 		songs,
@@ -111,6 +112,7 @@ const mapStateToProps = ({
 		}
 	} 
 }) => ({
+	loaded,
 	queryResults,
 	search,
 	songs,

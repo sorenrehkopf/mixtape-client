@@ -56,7 +56,8 @@ let currentUser;
 						tags: [],
 						params: []
 					}
-				}
+				},
+				songs: []
 			}
 		},
 		applyMiddleware(thunk, historyMiddleware)
