@@ -41,7 +41,19 @@ class Songs extends Component {
 	}
 
 	render() {
-		const { clearSearchResults, editSong, loaded, queryResults, search, selectSong, songs, tags } = this.props;
+		const { 
+			clearSearchResults,
+			editSong,
+			loaded,
+			loading,
+			loadSongs,
+			navigate,
+			queryResults,
+			search,
+			selectSong,
+			songs,
+			tags
+		} = this.props;
 		const { showSearchModal } = this.state;
 		const songsSource = search ? queryResults : songs;
 
@@ -79,7 +91,7 @@ class Songs extends Component {
 		return(
 			<div>
 				<h1>Your songs!</h1>
-				<button className={`pure-button ${style.toggle_button}`} onClick={() => this.toggleSearchModal()}>Search your collection!</button>
+				<button className={`pure-button ${style.button}`} onClick={() => this.toggleSearchModal()}>Search your collection!</button>
 				{search && <button className={`pure-button ${style.clear_button}`} onClick={clearSearchResults}>Clear search results</button>}
 				{showSearchModal && 
 					<Modal onBackgroundClick={() => this.toggleSearchModal()}>
@@ -92,6 +104,9 @@ class Songs extends Component {
 				<div>
 					{!loaded && <p>loading...</p>}
 					{songsList}
+					{!search && loaded && (<div className={style.load_more_container}>
+						<button className={`pure-button ${style.button} ${loading ? style.loading_button : ''}`} onClick={() => loadSongs(songs[songs.length - 1])}>Load More</button>
+					</div>)}
 				</div>
 			</div>
 		)
@@ -101,6 +116,7 @@ class Songs extends Component {
 const mapStateToProps = ({ 
 	songs: {
 		loaded,
+		loading,
 		queryResults,
 		search,
 		songs,
@@ -113,6 +129,7 @@ const mapStateToProps = ({
 	} 
 }) => ({
 	loaded,
+	loading,
 	queryResults,
 	search,
 	songs,
@@ -125,7 +142,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => ({
 	clearSearchResults: () => dispatch(clearSearchResults()),
-	loadSongs: () => dispatch(loadSongs()),
+	loadSongs: (song) => dispatch(loadSongs(song)),
 	selectSong: (song) => dispatch(selectSong(song)),
 	searchSongs: (data) => dispatch(searchSongCollection(data))
 });

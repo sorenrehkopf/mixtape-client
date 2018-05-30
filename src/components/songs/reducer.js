@@ -1,3 +1,5 @@
+import uniqBy from 'lodash/uniqBy';
+
 import {
 	CLEAR_SEARCH_RESULTS,
 	LOAD_SONGS_START,
@@ -38,12 +40,17 @@ const songsReducer = (state = initialState, { type, payload }) => {
 				search: false,
 				queryResults: []
 			}
+		case LOAD_SONGS_START:
+			return {
+				...state,
+				loading: true
+			}
 		case LOAD_SONGS_FINISH:
 			return {
 				...state,
 				loading: false,
 				loaded: true,
-				songs: payload.songs
+				songs: uniqBy([...state.songs, ...payload.songs], 'spotifyId')
 			}
 		case QUICK_IMPORT_FINISH:
 			return {

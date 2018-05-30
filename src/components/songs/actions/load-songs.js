@@ -5,10 +5,11 @@ import {
 
 import Api from '_/services/api';
 
-const loadSongs = () => async(dispatch, getState) => {
+const loadSongs = lastResult => async(dispatch, getState) => {
 	dispatch({ type: LOAD_SONGS_START });
 
-	const { data: { songs }} = await Api.get('songs');
+	const before = lastResult ? lastResult.id : '';
+	const { data: { songs }} = await Api.get(`songs?before=${before}`);
 	const payload = { songs };
 	
 	dispatch({ type: LOAD_SONGS_FINISH, payload });

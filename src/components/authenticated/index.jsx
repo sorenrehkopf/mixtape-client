@@ -32,16 +32,20 @@ class Authenticated extends Component {
 			<div className={style.scene}>
 				<Switch>
 					<Route path="/" exact component={Dashboard} />
-					<Route path="/songs" exact component={Songs} />
-					<Route path="/create" exact component={CreatePlaylist} />
-					<Route path="/import" exact component={ImportPlaylists} />
+					<Route path="/songs" component={Songs} />
+					<Route path="/create" component={CreatePlaylist} />
+					<Route path="/import" component={ImportPlaylists} />
 					<Redirect to={{ pathname: '/', state: { from: this.props.location }}} />
 				</Switch>
-				{selectedSong && (
-					<Modal onBackgroundClick={() => selectSong()}>
-						<AddSongDialog />
-					</Modal>
-				)}
+				<Route
+					path="*/addSong/:spotifyId?"
+					render={() => selectedSong ? (
+							<Modal onBackgroundClick={() => selectSong()}>
+								<AddSongDialog />
+							</Modal>
+						) : null
+					}
+				/>
 			</div>
 		</div>)
 	}

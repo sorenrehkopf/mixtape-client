@@ -40,16 +40,16 @@ class Sidebar extends Component {
 					</div>
 					<ul className="pure-menu-list">
 						<li className="pure-menu-item">
-							<Link className={`pure-menu-link ${pathname === '/' && style.current}`} to="">Add A Song</Link>
+							<Link className={`pure-menu-link ${/^\/$/.test(pathname) && style.current}`} to="/">Add A Song</Link>
 						</li>
 						<li className="pure-menu-item">
-							<Link className={`pure-menu-link ${pathname === '/import' && style.current}`} to="import">Import a Playlist</Link>
+							<Link className={`pure-menu-link ${/^\/import/.test(pathname) && style.current}`} to="/import">Import a Playlist</Link>
 						</li>
 						<li className="pure-menu-item">
-							<Link className={`pure-menu-link ${pathname === '/songs' && style.current}`} to="songs">Your Collection</Link>
+							<Link className={`pure-menu-link ${/^\/songs/.test(pathname) && style.current}`} to="/songs">Your Collection</Link>
 						</li>
 						<li className="pure-menu-item">
-							<Link className={`pure-menu-link ${pathname === '/create' && style.current}`} to="create">Create Playlist</Link>
+							<Link className={`pure-menu-link ${/^\/create/.test(pathname) && style.current}`} to="/create">Create Playlist</Link>
 						</li>
 						<li className="pure-menu-item">
 							<span className="pure-menu-link" onClick={logout}>Logout</span>

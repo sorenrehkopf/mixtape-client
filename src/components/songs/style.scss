@@ -1,11 +1,16 @@
 @import '~_/styles/_pallette';
 
-.toggle_button {
+.button {
 	background-color: $eucalyptus;
 	color: $jet;
 	border: 1px solid $pastel_green;
 	font-size: $normal;
 	margin: 15px;
+}
+
+.loading_button {
+	background-color: $gainsboro;
+	disabled: true;
 }
 
 .clear_button {
@@ -27,6 +32,10 @@
 .search_title {
 	margin: 10px 0px 20px;
 	color: $jet;	
+}
+
+.load_more_container {
+	text-align: center;
 }
 
 @media (max-width: 800px) {

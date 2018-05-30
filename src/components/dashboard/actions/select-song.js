@@ -3,11 +3,15 @@ import {
 	SELECT_SONG_FINISH
 } from './types';
 
+import { push, go } from 'react-router-redux';
+
 import Api from '_/services/api';
 import { convertDBTags, convertFromSpotify } from '_/services/transform-song-data';
 
 const selectSong = (songData, shouldLoad) => async(dispatch, getState) => {
 	dispatch({ type: SELECT_SONG_START });
+	const { router: { location: { pathname } } } = getState();
+
 	if (songData) {
 		// if we don't need to load the data for this song than just set it directly
 		if (!shouldLoad) {
@@ -18,6 +22,9 @@ const selectSong = (songData, shouldLoad) => async(dispatch, getState) => {
 					ms: songData.durationMs
 				}
 			};
+			if (!/addSong/.test(pathname)) {
+				dispatch(push(`${pathname}/addSong`))
+			}
 			return dispatch({ type: SELECT_SONG_FINISH, payload: { selectedSong: songData, isSelectedSongNew: false } });
 		}
 
@@ -55,8 +62,14 @@ const selectSong = (songData, shouldLoad) => async(dispatch, getState) => {
 		}
 
 		dispatch({ type: SELECT_SONG_FINISH, payload });
+		if (!/addSong/.test(pathname)) {
+			dispatch(push(`${pathname}/addSong`))
+		}
 	} else {
 		dispatch({ type: SELECT_SONG_FINISH, payload: { selectedSong: null } });
+		if (/addSong/.test(pathname)) {
+			dispatch(go(-1))
+		}
 	}
 };
 

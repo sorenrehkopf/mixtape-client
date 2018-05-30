@@ -5,6 +5,7 @@ import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-r
 import createHistory from 'history/createBrowserHistory';
 import { Provider } from 'react-redux';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import Api from './services/api';
 
@@ -19,6 +20,7 @@ import songsReducer from './components/songs/reducer';
 
 const history = createHistory();
 const historyMiddleware = routerMiddleware(history);
+const logger = createLogger({});
 
 const rootReducer = combineReducers({
 	createPlaylist: createPlaylistReducer,
@@ -60,7 +62,7 @@ let currentUser;
 				songs: []
 			}
 		},
-		applyMiddleware(thunk, historyMiddleware)
+		applyMiddleware(thunk, historyMiddleware, logger)
 	);
 
 	render(
