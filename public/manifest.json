@@ -34,8 +34,12 @@
   "orientation": "portrait",
   "display": "standalone",
   "scope": "/",
-  "supports_share": true,
   "share_target": {
-    "url_template": "/addSong/{title}{text}{url}"
+    "action": "index.html",
+    "params": {
+      "title": "received_title",
+      "text": "received_text",
+      "url": "received_url"
+    }
   }
 }
