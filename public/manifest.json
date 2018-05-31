@@ -33,5 +33,9 @@
   "theme_color": "#382F34",
   "orientation": "portrait",
   "display": "standalone",
-  "scope": "/"
+  "scope": "/",
+  "supports_share": true,
+  "share_target": {
+    "url_template": "/addSong/{title}{text}{url}"
+  }
 }
