@@ -31,10 +31,10 @@ class Authenticated extends Component {
 			<Sidebar {...{ displayName, displayPhoto, logout, pathname }}  />
 			<div className={style.scene}>
 				<Switch>
-					<Route path="/" exact component={Dashboard} />
 					<Route path="/songs" component={Songs} />
 					<Route path="/create" component={CreatePlaylist} />
 					<Route path="/import" component={ImportPlaylists} />
+					<Route path="/" component={Dashboard} />
 					<Redirect to={{ pathname: '/', state: { from: this.props.location }}} />
 				</Switch>
 				<Route
