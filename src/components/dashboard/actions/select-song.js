@@ -34,7 +34,7 @@ const selectSong = (songData, shouldLoad) => async(dispatch, getState) => {
 		const data = {
 			include: { 
 				params: { 
-					spotifyId: {
+					SPOTIFYID: {
 						type: 'strict_equivalence',
 						value0: spotifyId
 					}

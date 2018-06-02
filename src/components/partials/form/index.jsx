@@ -10,7 +10,7 @@ class Form extends Component {
 
 		for (let { name, value, type } of nameElements) {
 			if (type == 'checkbox') {
-				formData[name] = value || false;
+				formData[name] = value == 'true' || false;
 				continue;
 			}
 
@@ -63,8 +63,16 @@ class Form extends Component {
 		const delta = {};
 		if (!name || type == 'checkbox') return; 
 		if (value) {
-			const transformedValue = target.getAttribute('uppercase') ? value.toUpperCase() : value;
-			delta[name] = target.getAttribute('type') == 'text' ? transformedValue : parseFloat(value);
+			switch (type) {
+				case 'text':
+					const transformedValue = target.getAttribute('uppercase') ? value.toUpperCase() : value;
+					delta[name] = transformedValue;
+				case 'number':
+					delta[name] = parseFloat(value);
+				default:
+					delta[name] = value;
+				break
+			}
 		} else {
 			delta[name] = value;
 		}

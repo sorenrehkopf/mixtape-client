@@ -9,6 +9,9 @@ export const defaultQueryFields = [
 		name: 'ARTISTNAME'
 	},
 	{
+		name: 'ADDED'
+	},
+	{
 		name: 'DANCEABILITY'
 	},
 	{
@@ -94,6 +97,18 @@ export const paramTypes = {
 	greater_than:{
 		displayValue: 'is greater than',
 		inputTypes: ['number']
+	},
+	after: {
+		displayValue: 'since',
+		inputTypes: ['date']
+	},
+	before: {
+		displayValue: 'before',
+		inputTypes: ['date']
+	},
+	in_time_range: {
+		displayValue: 'in time range',
+		inputTypes: ['date', 'date']
 	},
 	less_than:{
 		displayValue: 'is less than',

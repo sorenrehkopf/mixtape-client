@@ -6,29 +6,34 @@ class Autocomplete extends Component {
 		super();
 		this.state = {
 			currentIdx: 0,
-			hideOptions: false,
+			hideOptions: true,
 			value: ''
 		};
 	}
 
 	getMatches() {
 		const { props: { options }, state: { value } } = this;
-		const valueRegex = new RegExp(value, 'i');
+		const valueRegex = new RegExp((value || '.*'), 'i');
 
 		return options.filter(option => valueRegex.test(option.name))
 			.sort((a,b) => a.name.length - b.name.length);
 	}
 
 	handleChange = ({ target: { value }}) => {
-		this.setState({ value: value.toUpperCase() });
+		const { input } = this.refs;
+		
+		this.setState({ value: value.toUpperCase() }, () => {
+			const event = new Event('input', { bubbles: true });
+  	  input.dispatchEvent(event);
+		});
 	}
 
 	onKeyDown = (e) => {
 		const { key } = e;
-		const { currentIdx, hideOptions } = this.state;
+		const { currentIdx, hideOptions, selected } = this.state;
 		const matches = this.getMatches();
 		
-		if(key == 'Enter' && !hideOptions && matches.length) {
+		if(key == 'Enter' && !selected && matches.length) {
 			e.preventDefault();
 
 			const value = matches[currentIdx].name;
@@ -37,6 +42,7 @@ class Autocomplete extends Component {
 		} else if (key != 'Enter' && key != 'Tab' && hideOptions) {
 			this.setState({
 				hideOptions: false,
+				selected: false,
 				currentIdx: 0
 			});
 		} else if (key == 'ArrowDown' && currentIdx < matches.length -1) {
@@ -50,10 +56,18 @@ class Autocomplete extends Component {
 		}
 	}
 
-	onBlur = () => {
+	onFocus = () => {
 		this.setState({
-			hideOptions: true
+			hideOptions: false
 		});
+	}
+
+	onBlur = () => {
+		setTimeout(() => {
+			this.setState({
+				hideOptions: true
+			});
+		},100)
 	}
 
 	select = (value) => {
@@ -61,7 +75,8 @@ class Autocomplete extends Component {
 
 		this.setState({
 			hideOptions: true,
-			value
+			value,
+			selected: true
 		}, () => {
 			const event = new Event('input', { bubbles: true });
   	  input.dispatchEvent(event);
@@ -73,12 +88,12 @@ class Autocomplete extends Component {
 	render() {
 		const { props: { autofocus, name, options, classname }, handleChange, state: { currentIdx, hideOptions, value } } = this;
 		const matches = this.getMatches().map((option, i) => 
-			<span key={i} className={`${style.option} ${currentIdx == i ? style.current : ''}`} onClick={() => this.select(option.name)}>{option.name}</span>);
+			<span tabIndex="0" key={i} className={`${style.option} ${currentIdx == i ? style.current : ''}`} onClick={() => this.select(option.name)}>{option.name}</span>);
 
 		return(
-			<div className={style.main}>
-				<input autoFocus={autofocus} type="text" onBlur={this.onBlur} ref="input" autoComplete="off" uppercase="true" onKeyDown={this.onKeyDown} name={name} value={value} className={classname} onChange={this.handleChange} />
-				{value && !hideOptions && <div className={style.options}>
+			<div className={style.main} onBlur={this.onBlur} tabIndex="0">
+				<input autoFocus={autofocus} onFocus={this.onFocus} type="text" ref="input" autoComplete="off" uppercase="true" onKeyDown={this.onKeyDown} name={name} value={value} className={classname} onChange={this.handleChange} />
+				{!hideOptions && <div className={style.options}>
 					{matches}
 				</div>}
 			</div>
