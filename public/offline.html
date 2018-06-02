@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>mixtape</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Mixtape gives you fine-grain control over how you categorize and utilize your music.">
+	
+	<link rel="manifest" href="/manifest.json">
+	<style type="text/css">
+		body {
+			margin: 0px;
+		}
+		.offline-page {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100vw;
+			height: 100vh;
+			background-color: #382F34;
+		}
+
+		.offline-text {
+			max-width: 400px;
+			padding: 20px;
+			color: #D2EBDC;
+			font-family: sans-serif;
+			text-align: center;
+		}
+
+		.offline-header {
+			font-size: 50px;
+		}
+
+		.offline-button {
+			border: none;
+			background-color: #38E4AE;
+			padding: 10px 50px;
+			border-radius: 50px;
+			color: #382F34;
+			font-size: 26px;
+			margin: 20px 0px 20vh;
+			cursor: pointer;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div class="offline-page">
+		<div class="offline-text">
+			<h1 class="offline-header">Offline</h1>
+			<p class="offline-description">Looks like you don't have internet access right now. Hit the button to reload the app once you do!</p>
+			<button class="offline-button">Reload!</button>
+		</div>
+	</div>
+
+	<script>
+		const button = document.querySelector('.offline-button');
+		button.addEventListener('click', () => {
+			window.location.replace('/');
+		});
+	</script>
+</body>
+</html>

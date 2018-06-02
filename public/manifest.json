@@ -1,6 +1,7 @@
 {
   "short_name": "Mixtape",
   "name": "Mixtape",
+  "description": "Mixtape gives you fine-grain control over how you categorize and utilize your music.",
   "icons": [
     {
       "src": "/images/icons/android-icon-48x48.png",
@@ -34,6 +35,11 @@
   "orientation": "portrait",
   "display": "standalone",
   "scope": "/",
+  "serviceworker": {
+    "src": "/service-worker.js",
+    "scope": "/",
+    "update_via_cache": "none"
+  },
   "share_target": {
     "action": "index.html",
     "params": {

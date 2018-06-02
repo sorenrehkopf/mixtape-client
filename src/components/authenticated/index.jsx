@@ -34,7 +34,8 @@ class Authenticated extends Component {
 					<Route path="/songs" component={Songs} />
 					<Route path="/create" component={CreatePlaylist} />
 					<Route path="/import" component={ImportPlaylists} />
-					<Route path="/" component={Dashboard} />
+					<Route path="/addSong" component={Dashboard} />
+					<Route path="/" exact component={Dashboard} />
 					<Redirect to={{ pathname: '/', state: { from: this.props.location }}} />
 				</Switch>
 				<Route

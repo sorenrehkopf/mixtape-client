@@ -40,7 +40,7 @@ class Sidebar extends Component {
 					</div>
 					<ul className="pure-menu-list">
 						<li className="pure-menu-item">
-							<Link className={`pure-menu-link ${/^\/$/.test(pathname) && style.current}`} to="/">Add A Song</Link>
+							<Link className={`pure-menu-link ${/^\/(addSong)*$/.test(pathname) && style.current}`} to="/">Add A Song</Link>
 						</li>
 						<li className="pure-menu-item">
 							<Link className={`pure-menu-link ${/^\/import/.test(pathname) && style.current}`} to="/import">Import a Playlist</Link>

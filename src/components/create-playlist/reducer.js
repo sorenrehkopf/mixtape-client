@@ -48,5 +48,5 @@ const createPlaylistReducer = (state = initialPlaylistState, { type, payload }) 
 	}
 };
 
-export { initialState };
+export { initialPlaylistState };
 export default createPlaylistReducer;

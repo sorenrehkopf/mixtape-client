@@ -1,18 +1,36 @@
+const cacheName = 'mixtapeCache';
+const cacheVersion = 1;
+
+const acceptsHtml = (request) => {
+  return request.headers.get('Accept')
+    .split(',')
+    .some(type => type == 'text/html');
+};
+
 self.addEventListener('install', event => {
-	console.log('the install event', event, self);
+  event.waitUntil(
+    caches.open(`${cacheName}${cacheVersion}`)
+      .then(cache => cache.addAll([
+        '/offline.html',
+        '/favicon.ico'
+      ]))
+    );
 });
 
-self.addEventListener('fetch', event => {
-	console.log(event);
-	event.respondWith(
-    caches.match(event.request).then(response => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
+self.addEventListener('fetch', (event) => {
+  if (acceptsHtml(event.request)) {
+    event.respondWith(
+      fetch(event.request).catch(() => {
+        return caches.match('/offline.html');
       })
     );
+  } else {
+    event.respondWith(
+      caches.match(event.request).then((response) => {
+        return response || fetch(event.request);
+      })
+    );
+  }
 });
 
 if ('actions' in navigator) {
