@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import debounce from 'lodash/debounce';
+
 import ListItem from '_/components/partials/list-item';
 import QueryForm from '_/components/partials/query-form';
 import Modal from '_/components/partials/modal';
+import Form from '_/components/partials/form';
 import style from './style';
 
 import clearSearchResults from './actions/clear-search-results';
@@ -50,6 +53,7 @@ class Songs extends Component {
 			navigate,
 			queryResults,
 			search,
+			simpleSearch,
 			selectSong,
 			songs,
 			tags
@@ -91,8 +95,11 @@ class Songs extends Component {
 		return(
 			<div>
 				<h1>Your songs!</h1>
-				<button className={`pure-button ${style.button}`} onClick={() => this.toggleSearchModal()}>Search your collection!</button>
+				<button className={`pure-button ${style.button}`} onClick={() => this.toggleSearchModal()}>Advanced Search</button>
 				{search && <button className={`pure-button ${style.clear_button}`} onClick={clearSearchResults}>Clear search results</button>}
+				<Form onChange={simpleSearch} className={`pure-form ${style.simple_search_form}`}>
+					<input type="text" name="searchTerm" className={`pure-input-2-3 ${style.simple_input}`} placeholder="Simple Search (song, artist, or album name)"/>
+				</Form>
 				{showSearchModal && 
 					<Modal onBackgroundClick={() => this.toggleSearchModal()}>
 						<div className={style.query_form_container}>
@@ -144,7 +151,24 @@ const mapDispatchToProps = (dispatch) => ({
 	clearSearchResults: () => dispatch(clearSearchResults()),
 	loadSongs: (song) => dispatch(loadSongs(song)),
 	selectSong: (song) => dispatch(selectSong(song)),
-	searchSongs: (data) => dispatch(searchSongCollection(data))
+	searchSongs: (data) => dispatch(searchSongCollection(data)),
+	simpleSearch: debounce(({ formData: { searchTerm } }) => {
+		if (searchTerm) {
+			dispatch(searchSongCollection({
+				include: {
+					params: {
+						"NAME": { type: 'loose_equivalence', value0: searchTerm },
+						"ARTIST NAME": { type: 'loose_equivalence', value0: searchTerm },
+						"ALBUM NAME": { type: 'loose_equivalence', value0: searchTerm }
+					}, 
+					tags: {}
+				},
+				exclude: { tags: {} }
+			}));
+		} else {
+			dispatch(clearSearchResults())
+		}
+	}, 500)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Songs);

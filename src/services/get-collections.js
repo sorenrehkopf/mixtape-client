@@ -3,10 +3,10 @@ export const defaultQueryFields = [
 		name: 'ACOUSTICNESS'
 	},
 	{
-		name: 'ALBUMNAME'
+		name: 'ALBUM NAME'
 	},
 	{
-		name: 'ARTISTNAME'
+		name: 'ARTIST NAME'
 	},
 	{
 		name: 'ADDED'
