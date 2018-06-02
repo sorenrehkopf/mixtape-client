@@ -11,8 +11,8 @@ import { convertDBTags, convertFromSpotify } from '_/services/transform-song-dat
 const selectSong = (songData, shouldLoad) => async(dispatch, getState) => {
 	dispatch({ type: SELECT_SONG_START });
 	const { router: { location } } = getState();
-	console.log(location)
 	const { pathname } = location;
+	
 	if (songData) {
 		// if we don't need to load the data for this song than just set it directly
 		if (!shouldLoad) {

@@ -27,9 +27,19 @@ class CreatePlaylist extends Component {
 							<input className={style.recycle} type="checkbox" name="recycle" checked={recycle} onChange={() => null} />
 							<p className={style.recycle_explanation}>**Recycle means that your default mixtape playlist will be used. If you haven't used this option yet then it will be created for you.**</p>
 						</label>
-						<label>Name</label>
+						<label><strong>Name</strong></label>
 						<br/>
 						<input name="name" readOnly={recycle} value={name} type="text" className={`pure-input ${style.name_input}`} />
+						<br/>
+						<label><strong>Ordering</strong></label>
+						<br/>
+						<br/>
+						<select name="order" type="text">
+							<option value="shuffle">shuffle</option>
+							<option value="oldest_first">oldest first</option>
+							<option value="newest_first">newest first</option>
+						</select>
+						<br/>
 					</Form>
 					<h2 className={style.sub_header}>Song Criteria</h2>
 					<QueryForm onSubmit={createPlaylist} tags={tags} options={options} submitText="Create!" />

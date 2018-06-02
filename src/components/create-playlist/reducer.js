@@ -7,16 +7,17 @@ import {
 	CLEAR_CREATED_PLAYLIST
 } from './actions/types';
 
-const initialState = {
+const initialPlaylistState = {
 	playlistData: {
 		name: DateTime.local().toLocaleString(),
-		recycle: true
+		recycle: true,
+		order: 'shuffle'
 	},
 	createdPlaylist: null,
 	loading: false
 };
 
-const createPlaylistReducer = (state = initialState, { type, payload }) => {
+const createPlaylistReducer = (state = initialPlaylistState, { type, payload }) => {
 	switch (type) {
 		case UPDATE_PLAYLIST_DATA:
 			return {
@@ -47,4 +48,5 @@ const createPlaylistReducer = (state = initialState, { type, payload }) => {
 	}
 };
 
+export { initialState };
 export default createPlaylistReducer;

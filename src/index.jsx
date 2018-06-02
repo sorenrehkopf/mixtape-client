@@ -12,7 +12,7 @@ import Api from './services/api';
 //custom components
 import Main from './components/main';
 
-import createPlaylistReducer from './components/create-playlist/reducer';
+import createPlaylistReducer, { initialPlaylistState } from './components/create-playlist/reducer';
 import dashboardReducer from './components/dashboard/reducer';
 import importPlaylistsReducer from './components/import-playlists/reducer';
 import mainReducer from './components/main/reducer';
@@ -43,6 +43,7 @@ let currentUser;
 
 	const store = createStore(rootReducer,
 		{ 
+			createPlaylist: initialPlaylistState,
 			main: { 
 				authenticated: !!currentUser, 
 				currentUser,

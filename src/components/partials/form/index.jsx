@@ -10,7 +10,7 @@ class Form extends Component {
 
 		for (let { name, value, type } of nameElements) {
 			if (type == 'checkbox') {
-				formData[name] = false;
+				formData[name] = value || false;
 				continue;
 			}
 
