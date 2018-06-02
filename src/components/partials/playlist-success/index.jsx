@@ -32,7 +32,8 @@ class PlaylistSuccess extends Component {
 						spotify: viewUrl
 					},
 					uri,
-					name
+					name,
+					description
 				}
 			},
 			refs: {
@@ -46,6 +47,7 @@ class PlaylistSuccess extends Component {
 			<div>
 				<h2 className={style.success_header}>Success!</h2>
 				<p>Your playlist <em><strong>{name}</strong></em> was successfully created.</p>
+				<p>Description: <em>{description}</em></p>
 				<p>**If you're rapidly generating new versions of your default playlist, your changes may not be reflected here right away, but they have been made.**</p>
 				<iframe
 					ref="player"

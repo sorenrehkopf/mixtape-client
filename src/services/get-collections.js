@@ -98,6 +98,14 @@ export const paramTypes = {
 		displayValue: 'is greater than',
 		inputTypes: ['number']
 	},
+	less_than:{
+		displayValue: 'is less than',
+		inputTypes: ['number']
+	},
+	strict_equivalence_numeric:{
+		displayValue: 'is exactly (numeric)',
+		inputTypes: ['number']
+	},
 	after: {
 		displayValue: 'since',
 		inputTypes: ['date']
@@ -109,13 +117,5 @@ export const paramTypes = {
 	in_time_range: {
 		displayValue: 'in time range',
 		inputTypes: ['date', 'date']
-	},
-	less_than:{
-		displayValue: 'is less than',
-		inputTypes: ['number']
-	},
-	strict_equivalence_numeric:{
-		displayValue: 'is exactly (numeric)',
-		inputTypes: ['number']
 	}
 }

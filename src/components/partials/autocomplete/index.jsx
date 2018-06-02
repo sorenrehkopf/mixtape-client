@@ -91,8 +91,8 @@ class Autocomplete extends Component {
 			<span tabIndex="0" key={i} className={`${style.option} ${currentIdx == i ? style.current : ''}`} onClick={() => this.select(option.name)}>{option.name}</span>);
 
 		return(
-			<div className={style.main} onBlur={this.onBlur} tabIndex="0">
-				<input autoFocus={autofocus} onFocus={this.onFocus} type="text" ref="input" autoComplete="off" uppercase="true" onKeyDown={this.onKeyDown} name={name} value={value} className={classname} onChange={this.handleChange} />
+			<div className={style.main}>
+				<input autoFocus={autofocus} onBlur={this.onBlur} onFocus={this.onFocus} type="text" ref="input" autoComplete="off" uppercase="true" onKeyDown={this.onKeyDown} name={name} value={value} className={classname} onChange={this.handleChange} />
 				{!hideOptions && <div className={style.options}>
 					{matches}
 				</div>}
