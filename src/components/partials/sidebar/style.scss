@@ -2,6 +2,8 @@
 
 .main {
 	background-color: $jet;
+	display: flex;
+	flex-direction: column;
 	&__header{
 		padding: 60px 30px 0px 1em;
 		min-width:150px;
@@ -41,6 +43,23 @@
 	}
 }
 
+.menu {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.about {
+	color: $gainsboro;
+	cursor: pointer;
+	margin: auto 0px 15px 0px;
+	display: block;
+	background-color: $jet;
+	&:hover, :focus, :active {
+		background-color: $jet;
+	}
+}
+
 .mobile_toggle {
 	display: none;
 }
@@ -69,6 +88,11 @@
 		&.open {
 			left: 0px;
 		}
+	}
+
+	.about {
+		padding: 10px 20px;
+		font-size: $normal;
 	}
 
 	.mobile_toggle {

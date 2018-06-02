@@ -12,6 +12,7 @@ import Dashboard from '../dashboard';
 import Songs from '../songs';
 import CreatePlaylist from '../create-playlist';
 import ImportPlaylists from '../import-playlists';
+import About from '../about';
 
 import logout from'./actions/logout';
 import selectSong from '_/components/dashboard/actions/select-song';
@@ -35,6 +36,7 @@ class Authenticated extends Component {
 					<Route path="/create" component={CreatePlaylist} />
 					<Route path="/import" component={ImportPlaylists} />
 					<Route path="/addSong" component={Dashboard} />
+					<Route path="/about" component={About} />
 					<Route path="/" exact component={Dashboard} />
 					<Redirect to={{ pathname: '/', state: { from: this.props.location }}} />
 				</Switch>

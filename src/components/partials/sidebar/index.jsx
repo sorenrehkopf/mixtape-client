@@ -38,7 +38,7 @@ class Sidebar extends Component {
 						</div>
 						{displayName && <p className={style['main__header--name']}>{displayName}</p>}
 					</div>
-					<ul className="pure-menu-list">
+					<ul className={`pure-menu-list ${style.menu_items}`}>
 						<li className="pure-menu-item">
 							<Link className={`pure-menu-link ${/^\/(addSong)*$/.test(pathname) && style.current}`} to="/">Add A Song</Link>
 						</li>
@@ -55,6 +55,7 @@ class Sidebar extends Component {
 							<span className="pure-menu-link" onClick={logout}>Logout</span>
 						</li>
 					</ul>
+					<Link className={`pure-menu-link ${style.about}`} to="/about">About</Link>
 				</div>
 			</div>
 		)
