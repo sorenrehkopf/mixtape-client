@@ -34,7 +34,6 @@ self.addEventListener('fetch', (event) => {
 });
 
 if ('actions' in navigator) {
-	console.log('adding event listener!');
 	navigator.actions.addEventListener('share', event => {
   	console.log('the event!', event)
 	});
