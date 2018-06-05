@@ -67,11 +67,12 @@ class Form extends Component {
 				case 'text':
 					const transformedValue = target.getAttribute('uppercase') ? value.toUpperCase() : value;
 					delta[name] = transformedValue;
+					break;
 				case 'number':
 					delta[name] = parseFloat(value);
+					break;
 				default:
 					delta[name] = value;
-				break
 			}
 		} else {
 			delta[name] = value;
