@@ -18,6 +18,16 @@ import logout from'./actions/logout';
 import selectSong from '_/components/dashboard/actions/select-song';
 
 class Authenticated extends Component {
+	componentWillMount() {
+		const { location: { search }, selectedSong, selectSong } = this.props;
+
+		if (!selectedSong && location.search) {
+			const spotifyId = decodeURIComponent(search).match(/track\/.+$/)[0].substr(6);
+
+			selectSong({ spotifyId }, true, true)
+		}
+	}
+
 	render() {
 		const { authenticated, currentRoute, currentUser, location, logout, selectedSong, selectSong } = this.props;
 
@@ -64,7 +74,7 @@ const mapStateToProps = ({ main: { authenticated, currentUser, error, selectedSo
 
 const mapDispatchToProps = (dispatch) => ({
 	logout: () => dispatch(logout()),
-	selectSong: () => dispatch(selectSong())
+	selectSong: (...params) => dispatch(selectSong(...params))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Authenticated);

@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const fs = require('fs');
 const path = require('path');
 
 const buildDir = path.resolve(__dirname, 'public');
@@ -71,6 +72,10 @@ const config = {
 		contentBase: buildDir,
 		historyApiFallback: {
 			index: `index.html`
+		},
+		https: {
+			key: fs.readFileSync('/home/sorenrehkopf/certs/mixtape-client/mixtape-client.key'),
+			cert: fs.readFileSync('/home/sorenrehkopf/certs/mixtape-client/mixtape-client.crt')
 		},
 		inline: true,
 		port:4400,

@@ -36,7 +36,7 @@
   ],
   "start_url": "/",
   "background_color": "#382F34",
-  "theme_color": "#38E4AE",
+  "theme_color": "#382F34",
   "orientation": "portrait",
   "display": "standalone",
   "scope": "/",
@@ -46,11 +46,6 @@
     "update_via_cache": "none"
   },
   "share_target": {
-    "action": "index.html",
-    "params": {
-      "title": "received_title",
-      "text": "received_text",
-      "url": "received_url"
-    }
+    "url_template": "/addSong?songId={text}"
   }
 }

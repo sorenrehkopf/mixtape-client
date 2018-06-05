@@ -3,16 +3,15 @@ import {
 	SELECT_SONG_FINISH
 } from './types';
 
-import { push, go } from 'react-router-redux';
+import { push, go, replace } from 'react-router-redux';
 
 import Api from '_/services/api';
-import { convertDBTags, convertFromSpotify } from '_/services/transform-song-data';
+import { convertDBTags, convertFromSpotify, convertBasicSongInfoFromSpotify } from '_/services/transform-song-data';
 
-const selectSong = (songData, shouldLoad) => async(dispatch, getState) => {
+const selectSong = (songData, shouldLoad, isFromShare) => async(dispatch, getState) => {
 	dispatch({ type: SELECT_SONG_START });
 	const { router: { location } } = getState();
 	const { pathname } = location;
-	
 	if (songData) {
 		// if we don't need to load the data for this song than just set it directly
 		if (!shouldLoad) {
@@ -46,11 +45,26 @@ const selectSong = (songData, shouldLoad) => async(dispatch, getState) => {
 		
 		let { data: { songs: [song] } } = await Api.get(`songs/search/${encodeURIComponent(JSON.stringify(data))}`);
 		let payload;
+
 		if (!song) {
-			song = await Api.get(`spotify/song/${spotifyId}`).then(({ data: { song } }) => song);
-			const transformedSongData = convertFromSpotify(song);
-			
-			payload = { selectedSong: { ...songData, ...transformedSongData }, isSelectedSongNew: true };
+			if (isFromShare) {
+				const { song: songInfo, songData } = await Api.get(`spotify/songWithData/${spotifyId}`).then(({ data }) => data);
+				const transformedSongInfo = convertBasicSongInfoFromSpotify(songInfo)
+				const transformedSongData = convertFromSpotify(songData);
+
+				payload = { selectedSong: { 
+						...transformedSongInfo,
+						...transformedSongData
+					},
+					isSelectedSongNew: true
+				}
+				dispatch(replace('/addSong'));
+			} else {
+				song = await Api.get(`spotify/songData/${spotifyId}`).then(({ data: { song } }) => song);
+				const transformedSongData = convertFromSpotify(song);
+				
+				payload = { selectedSong: { ...songData, ...transformedSongData }, isSelectedSongNew: true };
+			}
 		} else {
 			payload = { selectedSong: {
 					...song,
