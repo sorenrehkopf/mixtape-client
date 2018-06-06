@@ -86,7 +86,7 @@ const selectSong = (songData, shouldLoad, isFromShare) => async(dispatch, getSta
 	} else {
 		dispatch({ type: SELECT_SONG_FINISH, payload: { selectedSong: null } });
 		if (isSelectedSongFromShare) {
-			return window.close();
+			// Todo: implement functionality to take user back to Spotify here.
 		}
 		
 		if (/addSong/.test(pathname)) {

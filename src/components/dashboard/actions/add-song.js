@@ -28,7 +28,7 @@ const addSong = () => async(dispatch, getState) => {
 	dispatch({ type: ADD_SONG_FINISH, payload: { addedSongData } });
 
 	if (isSelectedSongFromShare) {
-		return window.close();
+			// Todo: implement functionality to take user back to Spotify here.
 	}
 
 	if (importQueue[0] && selectedSong.spotifyId == importQueue[0].spotifyId) {
