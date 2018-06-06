@@ -13,7 +13,7 @@ import { convertBasicSongInfoFromSpotify } from '_/services/transform-song-data'
 import selectSong from '_/components/dashboard/actions/select-song';
 
 const addSong = () => async(dispatch, getState) => {
-	const { main: { selectedSong, importQueue } } = getState();
+	const { main: { selectedSong, importQueue, isSelectedSongFromShare } } = getState();
 	
 	dispatch({ type: ADD_SONG_START });
 
@@ -26,6 +26,10 @@ const addSong = () => async(dispatch, getState) => {
 	const { data: addedSongData } = await Api.post('songs', selectedSong);
 
 	dispatch({ type: ADD_SONG_FINISH, payload: { addedSongData } });
+
+	if (isSelectedSongFromShare) {
+		return window.close();
+	}
 
 	if (importQueue[0] && selectedSong.spotifyId == importQueue[0].spotifyId) {
 		importQueue.shift();

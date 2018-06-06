@@ -10,7 +10,7 @@ import { convertDBTags, convertFromSpotify, convertBasicSongInfoFromSpotify } fr
 
 const selectSong = (songData, shouldLoad, isFromShare) => async(dispatch, getState) => {
 	dispatch({ type: SELECT_SONG_START });
-	const { router: { location } } = getState();
+	const { router: { location }, main: { isSelectedSongFromShare } } = getState();
 	const { pathname } = location;
 	if (songData) {
 		// if we don't need to load the data for this song than just set it directly
@@ -56,7 +56,8 @@ const selectSong = (songData, shouldLoad, isFromShare) => async(dispatch, getSta
 						...transformedSongInfo,
 						...transformedSongData
 					},
-					isSelectedSongNew: true
+					isSelectedSongNew: true,
+					isSelectedSongFromShare: true
 				}
 				dispatch(replace('/addSong'));
 			} else {
@@ -73,7 +74,8 @@ const selectSong = (songData, shouldLoad, isFromShare) => async(dispatch, getSta
 						ms: song.durationMs
 					}
 				},
-				isSelectedSongNew: false
+				isSelectedSongNew: false,
+				isSelectedSongFromShare: isFromShare
 			};
 		}
 
@@ -83,6 +85,10 @@ const selectSong = (songData, shouldLoad, isFromShare) => async(dispatch, getSta
 		}
 	} else {
 		dispatch({ type: SELECT_SONG_FINISH, payload: { selectedSong: null } });
+		if (isSelectedSongFromShare) {
+			return window.close();
+		}
+		
 		if (/addSong/.test(pathname)) {
 			dispatch(go(-1))
 		}

@@ -63,7 +63,8 @@ const mainReducer = (state = initialState, { type, payload }) => {
 			return {
 				...state,
 				selectedSong: payload.selectedSong,
-				isSelectedSongNew: payload.isSelectedSongNew
+				isSelectedSongNew: payload.isSelectedSongNew,
+				isSelectedSongFromShare: payload.isSelectedSongFromShare
 			}
 		case SLOW_IMPORT_FINISH:
 			return {
