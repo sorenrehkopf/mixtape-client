@@ -11,7 +11,8 @@ const login = () => (dispatch, getState) => {
 
 	const url = ({
 			"www.myxtape.io":  'https://www.myxtyp.com/api/auth/login',
-			"localhost": 'http://localhost:3000/api/auth/login'
+			"localhost": 'http://localhost:3000/api/auth/login',
+			"www.myxtape-dev.io": 'http://localhost:3000/api/auth/login'
 		})[window.location.hostname];
 
 	const loginWindow = new ChildWindow({

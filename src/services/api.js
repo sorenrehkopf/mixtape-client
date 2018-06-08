@@ -2,7 +2,8 @@ class Api {
 	static get baseUrl() {
 		return ({
 			"www.myxtape.io":  'https://www.myxtyp.com/api/',
-			"localhost": 'http://localhost:3000/api/'
+			"localhost": 'http://localhost:3000/api/',
+			"www.myxtape-dev.io": 'http://localhost:3000/api/'
 		})[window.location.hostname];
 	}
 

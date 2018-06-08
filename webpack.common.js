@@ -67,22 +67,7 @@ const config = {
 	},
 	plugins: [
 		new ExtractTextPlugin("style.css")
-	],
-	devServer: {
-		contentBase: buildDir,
-		historyApiFallback: {
-			index: `index.html`
-		},
-		https: {
-			key: fs.readFileSync('/home/sorenrehkopf/certs/mixtape-client/mixtape-client.key'),
-			cert: fs.readFileSync('/home/sorenrehkopf/certs/mixtape-client/mixtape-client.crt')
-		},
-		inline: true,
-		port:4400,
-		proxy: {
-			"/api": "http://localhost:3000/api"
-		}
-	}
+	]
 };
 
 module.exports = config;
