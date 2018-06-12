@@ -8,6 +8,7 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import Api from './services/api';
+import BatchLogger from './services/batch-logger';
 
 //custom components
 import Main from './components/main';
@@ -20,7 +21,8 @@ import songsReducer from './components/songs/reducer';
 
 const history = createHistory();
 const historyMiddleware = routerMiddleware(history);
-const logger = createLogger({});
+const loggerOptions = window.location.host == 'www.myxtape.io' ? { logger: new BatchLogger() } : {};
+const loggerMiddleware = createLogger(loggerOptions);
 
 const rootReducer = combineReducers({
 	createPlaylist: createPlaylistReducer,
@@ -63,7 +65,7 @@ let currentUser;
 				songs: []
 			}
 		},
-		applyMiddleware(thunk, historyMiddleware, logger)
+		applyMiddleware(thunk, historyMiddleware, loggerMiddleware)
 	);
 
 	render(
