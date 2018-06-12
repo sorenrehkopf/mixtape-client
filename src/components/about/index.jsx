@@ -31,6 +31,12 @@ const About = () => (
 			<li className={style.list_item}>When you select mixtape from the share options in Spotify, you will be taken directly into the add song dialog. Once you've updated your data you can use your phone's back button to take you back to Spotify.</li>
 			<li className={style.list_item}>This feature is currently only supported on Android (afaik), and is not built to handle anything other than single songs.</li>
 		</ul>
+		<h2>Privacy and data</h2>
+		<ul className={style.list}>
+			<li className={style.list_item}>Mixtape does not use cookies, but does use a similar technology called local storage purely for authentication purposes.</li>
+			<li className={style.list_item}>Mixtape replicates a very limited amount of your data from Spotify for ease of access purposes. In total this data consists of your Spotify user id, your display name, and the url for your profile photo if you have one. No personal data other than this is stored in any form, unless you for some reason enter it as song tags.</li>
+		</ul>
+		<br/>
 	</div>
 );
 
