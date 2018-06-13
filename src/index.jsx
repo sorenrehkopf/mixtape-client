@@ -33,14 +33,21 @@ const rootReducer = combineReducers({
 	songs: songsReducer
 });
 
-let currentUser;
-
 (async() => {
+	let currentUser;
+
 	try {
 		const { data } = await Api.get('user');
 		currentUser = data;
 	} catch (error) {
 		currentUser = null;
+	}
+
+	if (loggerOptions.logger && currentUser) {
+		loggerOptions.logger.setStaticData({
+			userId: currentUser.id,
+			userName: currentUser.displayName
+		});
 	}
 
 	const store = createStore(rootReducer,

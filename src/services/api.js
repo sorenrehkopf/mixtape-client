@@ -1,3 +1,5 @@
+import executeHttpRequest from '_/services/execute-http-request';
+
 class Api {
 	static get baseUrl() {
 		return ({
@@ -20,43 +22,28 @@ class Api {
 	}
 
 	static get(path) {
-		return this.executeHttpReqest({ path })
+		return this.makeReqest({ path })
 	}
 
 	static post(path, data) {
-		return this.executeHttpReqest({ data, method: 'POST', path });
+		return this.makeReqest({ data, method: 'POST', path });
 	}
 
 	static put(path, data) {
-		return this.executeHttpReqest({ data, method: 'PUT', path });
+		return this.makeReqest({ data, method: 'PUT', path });
 	}
 
-	static executeHttpReqest({ data, method = 'GET', path }) {
+	static makeReqest({ data, method = 'GET', path }) {
 		const { authToken, baseUrl } = this;
-		return new Promise((resolve, reject) => {
-			const http = new XMLHttpRequest();
+		const url = `${baseUrl}${path}`;
+		const headers = { authToken };
 
-			http.open(method, `${baseUrl}${path}`);
-
-			if (authToken) {
-				http.setRequestHeader('authtoken', authToken);
-			}
-
-			http.onreadystatechange = () => {
-				if(http.readyState === 4){
-					if(http.status===200) resolve({data: JSON.parse(http.response)});
-					else reject(`Error: ${http.status}`);
-				}
-			};
-
-			if(data){
-				http.setRequestHeader('Content-Type', 'application/json');
-				const serializedData = JSON.stringify(data);
-				http.send(serializedData);
-			} else {
-				http.send();
-			}
-		})
+		return executeHttpRequest({
+			data,
+			headers,
+			method,
+			url
+		});
 	}
 }
 
