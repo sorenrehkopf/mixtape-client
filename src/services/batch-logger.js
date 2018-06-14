@@ -5,23 +5,22 @@ class BatchLogger {
 	constructor() {
 		this.queue = [];
 		this.staticData = {};
+
+		window.addEventListener('beforeunload', async() => {
+			await this.shipLogs();
+		});
 	}
 
 	get logDestination() {
 		return ({
 			"www.myxtape.io":  'https://www.myxtyp.com/api/',
-			"localhost": 'http://localhost:5000/',
-			"www.myxtape-dev.io": 'http://localhost:5000/'
+			"localhost": 'http://localhost:5500/',
+			"www.myxtape-dev.io": 'http://localhost:5500/'
 		})[window.location.hostname]
 	}
 
 	get filters() {
-		return [
-			(data) => {
-				//filter out clutter from redux-logger. we only want actions and payloads
-				return data && data[0] && /(prev state)|(next state)|(log end)/.test(data[0]);
-			}
-		];
+		return [];
 	}
 
 	log(...data) {
@@ -45,16 +44,16 @@ class BatchLogger {
 	}
 
 	addLogToQueue({ level, data }) {
-		const { filters, staticData } = this;
+		const { filters, staticData, format } = this;
 
 		if(!filters.some(f => f(data))) {
 			this.queue.push({
 				level,
 				payload: {
 					...staticData,
-					...data
+					...format(data),
+					timestamp: new Date().toString()
 				},
-				timestamp: new Date().toString()
 			});
 
 			this.weighLogsForShipping();
@@ -64,12 +63,12 @@ class BatchLogger {
 	weighLogsForShipping() {
 		const { queue } = this;
 
-		if (queue.length >= 10) {
-			this.shipLogs();
+		if (queue.length >= 5) {
+			this.debouncedShipLogs();
 		}
 	}
 
-	shipLogs = debounce(() => {
+	shipLogs = () => {
 		const { logDestination: url, queue } = this;
 		const currentCargo = [...queue];
 
@@ -85,7 +84,13 @@ class BatchLogger {
 			this.queue = [...currentCargo, ...this.queue];
 			this.error({ error });
 		});
-	},2000);
+	}
+
+	debouncedShipLogs = debounce(this.shipLogs);
+
+	format(data) {
+		return data;
+	}
 
 	setStaticData(data) {
 		this.staticData = data;
