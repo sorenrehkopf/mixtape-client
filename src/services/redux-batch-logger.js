@@ -12,6 +12,26 @@ class ReduxBatchLogger extends BatchLogger {
 		];
 	}
 
+	log(...data) {
+		
+	}
+	
+	info(...data) {
+		
+	}
+
+	error(...data) {
+		
+	}
+
+	warn(...data) {
+		
+	}
+
+	debug(...data) {
+		
+	}
+
 	format(data) {
 		return {
 			action: data[2].type,
