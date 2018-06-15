@@ -28,7 +28,7 @@ class AddSongDialog extends Component {
 			...songData
 		}, skipAheadInQueue, tags, updateSongData } = this.props;
 		const defaultInputs = Object.keys(songDataValues).map(key => <Tag key={key} name={key} type={songDataValues[key].type} title={songDataValues[key].tip} value={songData[key]} />);
-		const tagInputs = Object.keys(songTags).map(key => <Tag key={key} name={`#${key}`} type={typeof songTags[key] == 'number' ? 'number' : null} value={songTags[key]} remove={() => removeTag(key)} />);
+		const tagInputs = Object.keys(songTags).map(key => <Tag key={key} name={`#${key}`} type={typeof songTags[key] != 'boolean' ? 'number' : null} value={songTags[key]} remove={() => removeTag(key)} />);
 		const inputs = [...defaultInputs, ...tagInputs];
 
 		return(

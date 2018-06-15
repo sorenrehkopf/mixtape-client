@@ -17,6 +17,7 @@ const selectSong = (songData, shouldLoad, isFromShare) => async(dispatch, getSta
 		if (!shouldLoad) {
 			const selectedSong = {
 				...songData,
+				tags: convertDBTags(songData.tags),
 				duration: {
 					friendly: songData.durationFriendly,
 					ms: songData.durationMs
@@ -69,6 +70,7 @@ const selectSong = (songData, shouldLoad, isFromShare) => async(dispatch, getSta
 		} else {
 			payload = { selectedSong: {
 					...song,
+					tags: convertDBTags(song.tags),
 					duration: {
 						friendly: song.durationFriendly,
 						ms: song.durationMs

@@ -77,7 +77,7 @@ class Form extends Component {
 		} else {
 			delta[name] = value;
 		}
-		
+
 		this.setState({ 
 			formData: {
 				...formData,

@@ -63,7 +63,7 @@ const convertDBTags = tags => {
 	for (let tag in tags) {
 		const { boolValue, numericValue, originalType } = tags[tag];
 		const isBool = originalType === 'boolean';
-
+		
 		tags[tag] = isBool ? boolValue : numericValue;
 	}
 
