@@ -7,6 +7,7 @@ import Tag from '_/components/partials/tag';
 import Autocomplete from '_/components/partials/autocomplete';
 
 import addSong from '_/components/dashboard/actions/add-song';
+import deleteSong from '_/components/partials/add-song-dialog/actions/delete-song';
 import updateSongData from '_/components/dashboard/actions/update-song-data';
 import skipAheadInQueue from '_/components/partials/add-song-dialog/actions/skip-ahead-in-queue';
 
@@ -16,7 +17,7 @@ import { songDataValues } from '_/services/get-collections';
 
 class AddSongDialog extends Component {
 	render() {
-		const { addSong, addTag, importQueue, isSelectedSongNew, removeTag, selectedSong: { 
+		const { addSong, addTag, deleteSong, importQueue, isSelectedSongNew, removeTag, selectedSong: { 
 			albumName,
 			artistName,
 			duration,
@@ -76,10 +77,17 @@ class AddSongDialog extends Component {
 					</div>
 					<button className={`pure-button ${style.tag_button}`}><i className="fas fa-plus"/> add a tag!</button>
 				</Form>
-				<button form="add-song-form" type="submit" className={`pure-button ${style.button}`}>
-					<i className="fas fa-plus"/>
-					{isSelectedSongNew ? ' Add' : ' Update'} song!
-				</button>
+				<div className={style.actions}>
+					<button form="add-song-form" type="submit" className={`pure-button ${style.button}`}>
+						<i className="fas fa-plus"/>
+						{isSelectedSongNew ? ' Add' : ' Update'} song!
+					</button>
+					{!isSelectedSongNew && (
+						<button type="button" onClick={deleteSong} className={`pure-button ${style.delete_button}`}>
+							<i className="fas fa-trash"/> <span className={style.delete_text}>delete!</span>
+						</button>
+					)}
+				</div>
 			</div>
 		)
 	}
@@ -94,6 +102,7 @@ const mapStateToProps = ({ main: { currentUser: { Tags: tags }, isSelectedSongNe
 
 const mapDispatchToProps = (dispatch) => ({
 	addSong: () => dispatch(addSong()),
+	deleteSong: () => dispatch(deleteSong()),
 	addTag: ({ formData: { newTagName, newTagNumeric } }) => {
 		const update = {};
 		update[`#${newTagName}`] = newTagNumeric ? 5 : true;

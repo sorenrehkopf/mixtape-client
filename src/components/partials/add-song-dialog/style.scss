@@ -120,12 +120,23 @@
 	align-content: start;
 }
 
+.actions {
+	align-self: flex-end;
+	text-align: right;
+	margin: auto 0px 0px 0px;
+}
+
 .button {
 	background-color: $eucalyptus;
 	color: $jet;
-	display: block;
-	align-self: end;
+	margin: auto 20px 0px auto;
+}
+
+.delete_button {
+	background-color: white;
+	color: $granite_grey;
 	margin: auto 0px 0px auto;
+	border: 1px solid $granite_grey;
 }
 
 @media (max-width: 800px) {
@@ -136,7 +147,20 @@
 		display: block;
 	}
 
+	.actions {
+		display: flex;
+		justify-content: space-between;
+	}
+
 	.button {
-		margin: 20px 0px 30px;
+		margin: 35px 20px 30px 0px;
+	}
+
+	.delete_button {
+		margin: 35px 0px;
+	}
+
+	.delete_text {
+		display: none;
 	}
 }

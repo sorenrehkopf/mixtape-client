@@ -33,6 +33,10 @@ class Api {
 		return this.makeReqest({ data, method: 'PUT', path });
 	}
 
+	static delete(path, data) {
+		return this.makeReqest({ data, method: 'DELETE', path });
+	}
+
 	static makeReqest({ data, method = 'GET', path }) {
 		const { authToken, baseUrl } = this;
 		const url = `${baseUrl}${path}`;
