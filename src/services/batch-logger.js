@@ -52,7 +52,7 @@ class BatchLogger {
 				payload: {
 					...staticData,
 					...format(data),
-					timestamp: new Date().toString()
+					clientTimestamp: new Date().toString()
 				},
 			});
 

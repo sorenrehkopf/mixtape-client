@@ -5,7 +5,7 @@ const formatTime = milliseconds => {
 	const minutes = date.getUTCMinutes();
 	const seconds = date.getUTCSeconds();
 	
-	return `${minutes}:${seconds}`;
+	return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 };
 
 export default formatTime;
