@@ -62,9 +62,12 @@ const convertBasicSongInfoFromSpotify = ({
 const convertDBTags = tags => {
 	for (let tag in tags) {
 		const { boolValue, numericValue, originalType } = tags[tag];
-		const isBool = originalType === 'boolean';
-		
-		tags[tag] = isBool ? boolValue : numericValue;
+		// if we don't have an original type value then this has already been converted
+		if (originalType) {
+			const isBool = originalType === 'boolean';
+			
+			tags[tag] = isBool ? boolValue : numericValue;
+		}
 	}
 
 	return tags;
