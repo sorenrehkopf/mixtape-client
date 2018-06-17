@@ -94,7 +94,7 @@ class Songs extends Component {
 
 		return(
 			<div>
-				<h1>Your songs!</h1>
+				<h1>Your Collection</h1>
 				<button className={`pure-button ${style.button}`} onClick={() => this.toggleSearchModal()}>Advanced Search</button>
 				{search && <button className={`pure-button ${style.clear_button}`} onClick={clearSearchResults}>Clear search results</button>}
 				<Form onChange={simpleSearch} className={`pure-form ${style.simple_search_form}`}>

@@ -26,7 +26,7 @@ class ImportPlaylists extends Component {
 
 		return(
 			<div>
-				<h1>Your playlists!</h1>
+				<h1>Your Playlists</h1>
 				{loaded && !loading && (<div>
 					{playlistsList}
 				</div>)}

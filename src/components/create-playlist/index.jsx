@@ -18,7 +18,7 @@ class CreatePlaylist extends Component {
 
 		return(
 			<div>
-				<h1>Create a playlist!</h1>
+				<h1>Create A Playlist</h1>
 				{!createdPlaylist && !loading && (<div>
 					<h2 className={style.sub_header}>Playlist Details</h2>
 					<Form className={`pure-form`} onChange={updatePlaylistData}>
