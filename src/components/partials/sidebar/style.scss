@@ -30,16 +30,19 @@
 			margin-top: 5px;
 		}
 	}
-	li > * {
-		&:hover, &:focus {
-			background-color: $granite_grey;
+	li {
+		height: auto;
+		> * {
+			&:hover, &:focus {
+				background-color: $granite_grey;
+			}
+			&.current {
+				background-color: $gainsboro;
+				color: $jet;
+			}
+			color: $eucalyptus;
+			cursor: pointer;
 		}
-		&.current {
-			background-color: $gainsboro;
-			color: $jet;
-		}
-		color: $eucalyptus;
-		cursor: pointer;
 	}
 }
 
