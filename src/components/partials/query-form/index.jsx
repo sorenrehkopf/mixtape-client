@@ -26,8 +26,23 @@ class QueryForm extends Component {
 		}
 	}
 
+	componentDidMount() {
+		const {	include, exclude } = this.props.queryData || {};
+		const update = {};
+
+		if (include) {
+			update.include = include;
+		}
+
+		if (exclude) {
+			update.exclude = exclude;
+		}
+		
+		this.setState(update);
+	}
+
 	add(which, type, name, data) {
-		const { state } = this;
+		const { state, props: { onChange } } = this;
 		const delta = state[which][type];
 		const update = {};
 
@@ -43,7 +58,12 @@ class QueryForm extends Component {
 		};
 		update[which][type] = delta;
 
-		this.setState(update);
+		this.setState(update, () => {
+			const { include, exclude } = this.state;
+			if (onChange) {
+				onChange({ formData: { include, exclude } });
+			}
+		});
 	}
 
 	toggleExclusive = (which, type) => {

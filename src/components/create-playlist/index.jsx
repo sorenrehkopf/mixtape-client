@@ -13,7 +13,16 @@ import clearCreatedPlaylist from './actions/clear-created-playlist';
 
 class CreatePlaylist extends Component {
 	render() {
-		const { createPlaylist, createdPlaylist, clearCreatedPlaylist, loading, name, recycle, tags, updatePlaylistData } = this.props;
+		const {
+			createPlaylist,
+			createdPlaylist,
+			clearCreatedPlaylist,
+			loading,
+			playlistData,
+			tags,
+			updatePlaylistData
+		} = this.props;
+		const { name, recycle } = playlistData;
 		const options = [...tags, ...defaultQueryFields];
 
 		return(
@@ -42,7 +51,7 @@ class CreatePlaylist extends Component {
 						<br/>
 					</Form>
 					<h2 className={style.sub_header}>Song Criteria</h2>
-					<QueryForm onSubmit={createPlaylist} tags={tags} options={options} submitText="Create!" />
+					<QueryForm onSubmit={createPlaylist} onChange={updatePlaylistData} options={options} queryData={playlistData} tags={tags} submitText="Create!" />
 				</div>)}
 				{!loading && createdPlaylist ? <PlaylistSuccess clearCreatedPlaylist={clearCreatedPlaylist} playlist={createdPlaylist} /> : null}
 				{loading && <p>loading...</p>}
@@ -58,18 +67,14 @@ const mapStateToProps = ({
 		}
 	},
 	createPlaylist: {
-		playlistData: {
-			name,
-			recycle
-		},
+		playlistData,
 		createdPlaylist,
 		loading
 	}
 }) =>({
 	createdPlaylist,
 	loading,
-	name,
-	recycle,
+	playlistData,
 	tags
 });
 
