@@ -20,7 +20,7 @@ class Sidebar extends Component {
 	}
 
 	render() {
-		const { displayName, displayPhoto, logout, pathname } = this.props;
+		const { displayName, displayPhoto, pathname } = this.props;
 		const { open } = this.state;
 
 		return(
@@ -52,7 +52,7 @@ class Sidebar extends Component {
 							<Link className={`pure-menu-link ${/^\/create/.test(pathname) && style.current}`} to="/create">Create Playlist</Link>
 						</li>
 						<li className="pure-menu-item">
-							<span className="pure-menu-link" onClick={logout}>Logout</span>
+							<Link className={`pure-menu-link ${/^\/settings/.test(pathname) && style.current}`} to="/settings">Settings</Link>
 						</li>
 					</ul>
 					<Link className={`pure-menu-link ${style.about}`} to="/about">About</Link>

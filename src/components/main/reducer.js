@@ -13,6 +13,11 @@ import {
 	SLOW_IMPORT_FINISH
 } from '_/components/import-playlists/actions/types';
 
+import {
+	UPDATE_USER_SETTINGS,
+	SAVE_USER_SETTINGS_FINISH
+} from '_/components/settings/actions/types';
+
 const initialState = {};
 
 const mainReducer = (state = initialState, { type, payload }) => {
@@ -77,6 +82,14 @@ const mainReducer = (state = initialState, { type, payload }) => {
 				selectedSong: {
 					...state.selectedSong,
 					...payload.update
+				}
+			}
+		case UPDATE_USER_SETTINGS:
+			return {
+				...state,
+				currentUser: {
+					...state.currentUser,
+					settings: payload
 				}
 			}
 		default:

@@ -8,11 +8,12 @@ import Sidebar from '../partials/sidebar';
 import Modal from '../partials/modal';
 import AddSongDialog from '../partials/add-song-dialog';
 
-import Dashboard from '../dashboard';
-import Songs from '../songs';
-import CreatePlaylist from '../create-playlist';
-import ImportPlaylists from '../import-playlists';
 import About from '../about';
+import CreatePlaylist from '../create-playlist';
+import Dashboard from '../dashboard';
+import ImportPlaylists from '../import-playlists';
+import Settings from '../settings';
+import Songs from '../songs';
 
 import logout from'./actions/logout';
 import selectSong from '_/components/dashboard/actions/select-song';
@@ -46,6 +47,7 @@ class Authenticated extends Component {
 					<Route path="/create" component={CreatePlaylist} />
 					<Route path="/import" component={ImportPlaylists} />
 					<Route path="/addSong" component={Dashboard} />
+					<Route path="/settings" component={Settings} />
 					<Route path="/about" component={About} />
 					<Route path="/" exact component={Dashboard} />
 					<Redirect to={{ pathname: '/', state: { from: this.props.location }}} />

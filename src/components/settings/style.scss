@@ -1,0 +1,42 @@
+@import '~_/styles/pallette';
+
+.form_input {
+	display: block;
+}
+
+.form_label {
+	display: block;
+	margin: 10px 0px 5px;
+}
+
+.toggle {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+}
+
+.submit_button {
+	display: block;
+	margin: 30px 0px 0px;
+	background-color: $eucalyptus;
+	color: $jet;
+	padding: 10px 30px;
+	font-size: $normal;
+	border: none;
+	border-radius: 3px;
+}
+
+.logout_button {
+	display: block;
+	margin: 30px 0px 0px;
+	background-color: $gainsboro;
+	color: $jet;
+	padding: 10px 30px;
+	font-size: $normal;
+	border: 1px solid $jet;
+	border-radius: 3px;
+}
