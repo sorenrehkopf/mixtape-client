@@ -10,9 +10,12 @@ const saveUserSettings = () => async(dispatch, getState) => {
 
 	dispatch({ type: SAVE_USER_SETTINGS_START });
 
-	await Api.post('user/settings', { settings });
-
-	dispatch({ type: SAVE_USER_SETTINGS_FINISH, payload: {} });
+	try {
+		await Api.post('user/settings', { settings });
+		dispatch({ type: SAVE_USER_SETTINGS_FINISH, payload: {} });
+	} catch(error) {
+		dispatch({ type: SAVE_USER_SETTINGS_FINISH, payload: { error } });
+	}
 };
 
 export default saveUserSettings;

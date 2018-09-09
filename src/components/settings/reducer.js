@@ -12,13 +12,14 @@ const settingsReducer = (state = initialState, { type, payload }) => {
 		case SAVE_USER_SETTINGS_START:
 			return {
 				...state,
-
+				loading: true
 			}
 		case SAVE_USER_SETTINGS_FINISH:
 			return {
 				...state,
+				loading: false,
 				saveSucceeded: !payload.error,
-				saveFailed: payload.error
+				saveFailed: !!payload.error
 			}
 		default: 
 			return state;

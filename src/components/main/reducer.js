@@ -15,7 +15,6 @@ import {
 
 import {
 	UPDATE_USER_SETTINGS,
-	SAVE_USER_SETTINGS_FINISH
 } from '_/components/settings/actions/types';
 
 const initialState = {};

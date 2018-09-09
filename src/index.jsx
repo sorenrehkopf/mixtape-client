@@ -18,6 +18,7 @@ import dashboardReducer from './components/dashboard/reducer';
 import importPlaylistsReducer from './components/import-playlists/reducer';
 import mainReducer from './components/main/reducer';
 import songsReducer from './components/songs/reducer';
+import settingsReducer from './components/settings/reducer';
 
 const history = createHistory();
 const historyMiddleware = routerMiddleware(history);
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
 	importPlaylists: importPlaylistsReducer,
 	main: mainReducer,
 	router: routerReducer,
-	songs: songsReducer
+	songs: songsReducer,
+	settings: settingsReducer
 });
 
 (async() => {

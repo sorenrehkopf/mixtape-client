@@ -33,9 +33,9 @@ class Settings extends Component {
 
 	render() {
 		const { props, hasChanged } = this;
-		const { logout, settings, saveUserSettings, updateUserSettings } = props;
+		const { logout, settings, saveUserSettings, saveFailed, saveSucceeded, updateUserSettings } = props;
 		const { dontSaveAddedSongs, defaultPlaylistName } = settings;
-		console.log('props!', dontSaveAddedSongs)
+		console.log('props!', hasChanged, dontSaveAddedSongs, saveFailed, saveSucceeded)
 
 		return (
 			<div>
@@ -63,16 +63,33 @@ class Settings extends Component {
 				</Form>
 				<div className={style.buttons}>
 					<button className={style.submit_button} disabled={!hasChanged} onClick={saveUserSettings}>Update Settings!</button>
-					<button className={style.logout_button} onClick={logout}>Logout</button>
+					<button className={style.logout_button} onClick={logout}>
+						<i className="fas fa-sign-out-alt"></i> Logout
+					</button>
 				</div>
+				<p>
+					{saveSucceeded && 'Settings Saved'}
+					{saveFailed && 'Something went wrong while saving your settings...'}
+				</p>
 			</div>
 		)
 	}
 }
 
-const mapStateToProps = ({ main: { currentUser: { settings } } }) => ({
+const mapStateToProps = ({
+	main: {
+		currentUser: { settings } 
+	},
+	settings: {
+		saveFailed,
+		saveSucceeded
+	}  
+}) => ({
+	saveFailed,
+	saveSucceeded,
 	settings: {
 		...settings,
+		dontSaveAddedSongs: settings.dontSaveAddedSongs || false,
 		defaultPlaylistName: settings.defaultPlaylistName || 'My Mixtape'
 	}
 });
