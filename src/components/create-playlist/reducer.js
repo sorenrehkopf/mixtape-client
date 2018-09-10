@@ -7,6 +7,10 @@ import {
 	CLEAR_CREATED_PLAYLIST
 } from './actions/types';
 
+import {
+	USE_MIX
+} from '_/components/mixes/actions/types';
+
 const initialPlaylistState = {
 	playlistData: {
 		name: DateTime.local().toLocaleString(),
@@ -27,6 +31,15 @@ const createPlaylistReducer = (state = initialPlaylistState, { type, payload }) 
 					...payload
 				}
 			};
+		case USE_MIX:
+			return {
+				...state,
+				playlistData: {
+					...state.playlistData,
+					include: payload.include,
+					exclude: payload.exclude
+				}
+			}
 		case CREATE_PLAYLIST_START:
 			return {
 				...state,

@@ -1,0 +1,45 @@
+@import '~_/styles/_pallette';
+
+.query_form_container {
+	background-color: white;
+	overflow: auto;
+	padding: 20px;
+	width: 80vw;
+	height: 70vh;
+}
+
+.mix_list {
+	margin-top: 15px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 30px;
+}
+
+.button {
+	background-color: $eucalyptus;
+	color: $jet;
+	font-size: $normal;
+	margin: 5px 0px;
+}
+
+.delete_button {
+	background-color: white;
+	color: $granite_grey;
+	font-size: $normal;
+	margin: 5px 20px;
+	border: 1px solid $granite_grey;
+}
+
+@media (max-width: 800px) {
+	.query_form_container {
+		width: 100vw;
+		height: calc(100vh - 92px);
+	}
+
+	.delete_text {
+		display: none;
+	}
+}

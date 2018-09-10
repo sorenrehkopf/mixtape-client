@@ -35,7 +35,6 @@ class Settings extends Component {
 		const { props, hasChanged } = this;
 		const { logout, settings, saveUserSettings, saveFailed, saveSucceeded, updateUserSettings } = props;
 		const { dontSaveAddedSongs, defaultPlaylistName } = settings;
-		console.log('props!', hasChanged, dontSaveAddedSongs, saveFailed, saveSucceeded)
 
 		return (
 			<div>

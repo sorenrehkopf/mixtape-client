@@ -9,10 +9,6 @@ import {
 } from './actions/types'
 
 import {
-	LOGIN_FINISH
-} from '_/components/main/actions/types';
-
-import {
 	ADD_SONG_FINISH
 } from '_/components/dashboard/actions/types';
 

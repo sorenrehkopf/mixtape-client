@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './style';
 
-class ListItem extends Component {
+class PlaylistItem extends Component {
 	get smallestImageUrl() {
 		const { playlist: { images } } = this.props
 
@@ -42,4 +42,4 @@ class ListItem extends Component {
 	}
 }
 
-export default ListItem;
+export default PlaylistItem;

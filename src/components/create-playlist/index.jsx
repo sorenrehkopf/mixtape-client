@@ -11,6 +11,8 @@ import createPlaylist from './actions/create-playlist';
 import updatePlaylistData from './actions/update-playlist-data';
 import clearCreatedPlaylist from './actions/clear-created-playlist';
 
+import selectMix from '_/components/mixes/actions/select-mix';
+
 class CreatePlaylist extends Component {
 	render() {
 		const {
@@ -19,6 +21,7 @@ class CreatePlaylist extends Component {
 			clearCreatedPlaylist,
 			loading,
 			playlistData,
+			saveMix,
 			tags,
 			updatePlaylistData
 		} = this.props;
@@ -53,7 +56,14 @@ class CreatePlaylist extends Component {
 					<h2 className={style.sub_header}>Song Criteria</h2>
 					<QueryForm onSubmit={createPlaylist} onChange={updatePlaylistData} options={options} queryData={playlistData} tags={tags} submitText="Create!" />
 				</div>)}
-				{!loading && createdPlaylist ? <PlaylistSuccess clearCreatedPlaylist={clearCreatedPlaylist} playlist={createdPlaylist} /> : null}
+				{!loading && createdPlaylist ? 
+					<PlaylistSuccess
+						clearCreatedPlaylist={clearCreatedPlaylist}
+						playlist={createdPlaylist}
+						saveMix={() => saveMix({ parameters: playlistData })}
+					/>
+					: null
+				}
 				{loading && <p>loading...</p>}
 			</div>
 		)
@@ -81,6 +91,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) => ({
 	createPlaylist: (data) => dispatch(createPlaylist(data)),
 	clearCreatedPlaylist: () => dispatch(clearCreatedPlaylist()),
+	saveMix: playlistData => dispatch(selectMix(playlistData)),
 	updatePlaylistData: ({ formData: data }) => dispatch(updatePlaylistData(data))
 });
 

@@ -12,6 +12,7 @@ import About from '../about';
 import CreatePlaylist from '../create-playlist';
 import Dashboard from '../dashboard';
 import ImportPlaylists from '../import-playlists';
+import Mixes from '../mixes';
 import Settings from '../settings';
 import Songs from '../songs';
 
@@ -43,12 +44,13 @@ class Authenticated extends Component {
 			<Sidebar {...{ displayName, displayPhoto, logout, pathname }}  />
 			<div className={style.scene}>
 				<Switch>
-					<Route path="/songs" component={Songs} />
+					<Route path="/about" component={About} />
+					<Route path="/addSong" component={Dashboard} />
 					<Route path="/create" component={CreatePlaylist} />
 					<Route path="/import" component={ImportPlaylists} />
-					<Route path="/addSong" component={Dashboard} />
+					<Route path="/mixes" component={Mixes} />
 					<Route path="/settings" component={Settings} />
-					<Route path="/about" component={About} />
+					<Route path="/songs" component={Songs} />
 					<Route path="/" exact component={Dashboard} />
 					<Redirect to={{ pathname: '/', state: { from: this.props.location }}} />
 				</Switch>

@@ -17,6 +17,7 @@ import createPlaylistReducer, { initialPlaylistState } from './components/create
 import dashboardReducer from './components/dashboard/reducer';
 import importPlaylistsReducer from './components/import-playlists/reducer';
 import mainReducer from './components/main/reducer';
+import mixesReducer from './components/mixes/reducer';
 import songsReducer from './components/songs/reducer';
 import settingsReducer from './components/settings/reducer';
 
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
 	dashboard: dashboardReducer,
 	importPlaylists: importPlaylistsReducer,
 	main: mainReducer,
+	mixes: mixesReducer,
 	router: routerReducer,
 	songs: songsReducer,
 	settings: settingsReducer

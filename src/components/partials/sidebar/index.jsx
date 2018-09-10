@@ -46,7 +46,10 @@ class Sidebar extends Component {
 							<Link className={`pure-menu-link ${/^\/import/.test(pathname) && style.current}`} to="/import">Import a Playlist</Link>
 						</li>
 						<li className="pure-menu-item">
-							<Link className={`pure-menu-link ${/^\/songs/.test(pathname) && style.current}`} to="/songs">Your Collection</Link>
+							<Link className={`pure-menu-link ${/^\/songs/.test(pathname) && style.current}`} to="/songs">Your Songs</Link>
+						</li>
+						<li className="pure-menu-item">
+							<Link className={`pure-menu-link ${/^\/mixes/.test(pathname) && style.current}`} to="/mixes">Your Mixes</Link>
 						</li>
 						<li className="pure-menu-item">
 							<Link className={`pure-menu-link ${/^\/create/.test(pathname) && style.current}`} to="/create">Create Playlist</Link>

@@ -1,0 +1,54 @@
+@import '~_/styles/_pallette';
+
+.main {
+	padding: 10px;
+	box-sizing: border-box;
+	border-top: 2px solid $jet;
+	background-color: $gainsboro;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	cursor: pointer;
+}
+
+.name {
+	font-size: $normal;
+	flex: 1;
+	flex-shrink: 0;
+	text-overflow: ellipsis;
+}
+
+.summary {
+	margin: 0px 0px 0px 30px;
+	font-size: $small;
+	flex: 1;
+	flex-shrink: 0;
+	text-overflow: ellipsis;
+}
+
+.action {
+	cursor: pointer;
+	margin: 0px 30px;
+	display: flex;
+	align-items: center;
+	flex: 1;
+}
+
+.icon {
+	color: $pastel_green;
+	font-size: $larger;
+	margin: 0px 10px;
+}
+
+@media (max-width: 800px) {
+	.action {
+		margin: 0px 10px;
+	}
+}
+
+@media (max-width: 400px) {
+	.summary {
+		display: none;
+	}
+}

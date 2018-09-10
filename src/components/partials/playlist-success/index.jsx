@@ -34,7 +34,8 @@ class PlaylistSuccess extends Component {
 					uri,
 					name,
 					description
-				}
+				},
+				saveMix
 			},
 			refs: {
 				player
@@ -59,6 +60,10 @@ class PlaylistSuccess extends Component {
 					allow="encrypted-media">
 				</iframe>
 				<br/>
+				<button className={`${style.button}`} onClick={saveMix}>
+					<i className="fas fa-star"/>
+					<span>Save This Mix</span>
+				</button>
 				<button className={`${style.button} ${style.clear}`} onClick={clearCreatedPlaylist}>
 					<i className="fas fa-sync"/>
 					<span>Make Another</span>
