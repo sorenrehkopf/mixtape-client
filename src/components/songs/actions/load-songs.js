@@ -9,8 +9,8 @@ const loadSongs = lastResult => async(dispatch, getState) => {
 	dispatch({ type: LOAD_SONGS_START });
 
 	const before = lastResult ? lastResult.id : '';
-	const { data: { songs } } = await Api.get(`songs?before=${before}`);
-	const payload = { songs };
+	const { data: { songs, total } } = await Api.get(`songs?before=${before}`);
+	const payload = { songs, total };
 	
 	dispatch({ type: LOAD_SONGS_FINISH, payload });
 }

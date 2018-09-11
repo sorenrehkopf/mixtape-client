@@ -35,7 +35,6 @@ class Autocomplete extends Component {
 		
 		if(key == 'Enter' && !selected && matches.length) {
 			e.preventDefault();
-
 			const value = matches[currentIdx].name;
 
 			this.select(value);
@@ -45,6 +44,8 @@ class Autocomplete extends Component {
 				selected: false,
 				currentIdx: 0
 			});
+
+			document.addEventListener('click', this.blur);
 		} else if (key == 'ArrowDown' && currentIdx < matches.length -1) {
 			this.setState({
 				currentIdx: currentIdx + 1
@@ -58,16 +59,23 @@ class Autocomplete extends Component {
 
 	onFocus = () => {
 		this.setState({
-			hideOptions: false
+			hideOptions: false,
+			selected: false
 		});
+
+		document.addEventListener('click', this.blur);
 	}
 
-	onBlur = () => {
-		setTimeout(() => {
-			this.setState({
-				hideOptions: true
-			});
-		},100)
+	blur = event => {
+		if (!event || !this.componentElementRef.contains(event.target)) {
+			setTimeout(() => {
+				this.setState({
+					hideOptions: true
+				});
+			},100)
+
+			document.removeEventListener('click', this.blur);
+		}
 	}
 
 	select = (value) => {
@@ -83,6 +91,7 @@ class Autocomplete extends Component {
 		});
 
 		input.focus();
+		this.blur();
 	}
 
 	render() {
@@ -91,8 +100,8 @@ class Autocomplete extends Component {
 			<span tabIndex="0" key={i} className={`${style.option} ${currentIdx == i ? style.current : ''}`} onClick={() => this.select(option.name)}>{option.name}</span>);
 
 		return(
-			<div className={style.main}>
-				<input autoFocus={autofocus} onBlur={this.onBlur} onFocus={this.onFocus} type="text" ref="input" autoComplete="off" uppercase="true" onKeyDown={this.onKeyDown} name={name} value={value} className={classname} onChange={this.handleChange} />
+			<div ref={e => this.componentElementRef = e} className={style.main}>
+				<input autoFocus={autofocus} onFocus={this.onFocus} type="text" ref="input" autoComplete="off" uppercase="true" onKeyDown={this.onKeyDown} name={name} value={value} className={classname} onChange={this.handleChange} />
 				{!hideOptions && <div className={style.options}>
 					{matches}
 				</div>}

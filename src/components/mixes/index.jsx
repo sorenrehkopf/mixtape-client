@@ -59,8 +59,8 @@ class Mixes extends Component {
 							<Modal onBackgroundClick={() => selectMix(null)}>
 								<div className={style.query_form_container}>
 									<h2 className={style.search_title}>{selectedMix.id ? 'Editing' : 'Adding'} a mix</h2>
-									<Form className="pure-form" onChange={({ formData }) => updateSelectedMix(formData)}>
-										<label>Name</label><br/>
+									<Form className={`pure-form ${style.info_form}`} onChange={({ formData }) => updateSelectedMix(formData)}>
+										<label className={style.label}><strong>Name</strong></label>
 										<input type="text" className="pure-input" name="name" value={selectedMix.name || ''} onChange={() => {}}></input>
 									</Form>
 									<QueryForm
@@ -73,11 +73,11 @@ class Mixes extends Component {
 									/>
 									<div className={style.buttons}>
 										<button className={`pure-button ${style.button}`} onClick={saveMix}>
-											Save
+											Save Mix
 										</button>
-										<button className={`pure-button ${style.delete_button}`} onClick={deleteMix}>
+										{selectedMix.id && <button className={`pure-button ${style.delete_button}`} onClick={deleteMix}>
 											<i className="fas fa-trash"/> <span className={style.delete_text}>delete!</span>
-										</button>
+										</button>}
 									</div>
 								</div>
 							</Modal>

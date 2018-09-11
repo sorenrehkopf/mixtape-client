@@ -7,7 +7,7 @@ class MixItem extends Component {
 		const tagNames = Object.keys(tags);
 		return(
 			<div className={style.main}>
-				<span className={style.name}>{name}</span>
+				<span className={style.name}><strong>{name}</strong></span>
 				<div className={style.summary}>
 					<em>{tagNames.slice(0, 3).join(', ')}{tagNames.length > 3 ? '...' : ''}</em>
 				</div>

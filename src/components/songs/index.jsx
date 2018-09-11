@@ -56,7 +56,8 @@ class Songs extends Component {
 			simpleSearch,
 			selectSong,
 			songs,
-			tags
+			tags,
+			total
 		} = this.props;
 		const { showSearchModal } = this.state;
 		const songsSource = search ? queryResults : songs;
@@ -95,6 +96,15 @@ class Songs extends Component {
 		return(
 			<div>
 				<h1>Your Songs</h1>
+				{total && <p>
+					<span>{search ? queryResults.length : total} </span>
+					<span>
+						{search ? 
+							' songs match that search' 
+							: ' total songs in collection'
+						}
+					</span>
+				</p>}
 				<button className={`pure-button ${style.button}`} onClick={() => this.toggleSearchModal()}>Advanced Search</button>
 				{search && <button className={`pure-button ${style.clear_button}`} onClick={clearSearchResults}>Clear search results</button>}
 				<Form onChange={simpleSearch} className={`pure-form ${style.simple_search_form}`}>
@@ -127,7 +137,8 @@ const mapStateToProps = ({
 		queryResults,
 		search,
 		songs,
-		showSearchModal
+		showSearchModal,
+		total
 	},
 	main: {
 		currentUser: {
@@ -144,7 +155,8 @@ const mapStateToProps = ({
 	tags: tags.map(tag => {
 		tag.name = tag.name.toUpperCase();
 		return tag;
-	})
+	}),
+	total
 });
 
 const mapDispatchToProps = (dispatch) => ({

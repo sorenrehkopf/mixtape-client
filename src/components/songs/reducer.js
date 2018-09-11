@@ -23,6 +23,7 @@ const songsReducer = (state = initialState, { type, payload }) => {
 		case ADD_SONG_FINISH:
 			return {
 				...state,
+				total: (state.total || 0) + 1,
 				songs: [
 					...[payload.addedSongData].filter(({ spotifyId }) => {
 						return !state.songs.some(song => song.spotifyId == spotifyId);
@@ -46,6 +47,7 @@ const songsReducer = (state = initialState, { type, payload }) => {
 				...state,
 				loading: false,
 				loaded: true,
+				total: payload.total,
 				songs: uniqBy([...state.songs, ...payload.songs], 'spotifyId')
 			}
 		case QUICK_IMPORT_FINISH:

@@ -6,13 +6,13 @@ const Tag = ({...props}) => props.value !== false ? (
 		<p className={style.name} title={props.title}>{props.name} { props.remove && <span onClick={props.remove}>x</span>}</p>
 		{props.type == 'number' && (
 			<div className={style.input_container}>
-				<input className={style.value} type="number" name={props.name} value={props.value} step="any"/>
+				<input className={style.value} type="number" name={props.name} value={props.value} step="any" onChange={() => {}}/>
 			</div>
 			)
 		}
 		{props.type == 'text' && (
 			<div className={style.input_container}>
-				<input className={style.value} type="text" name={props.name} value={props.value}/>
+				<input className={style.value} type="text" name={props.name} value={props.value} onChange={() => {}}/>
 			</div>
 			)
 		}
