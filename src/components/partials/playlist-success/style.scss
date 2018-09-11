@@ -4,12 +4,17 @@
 	font-size: $normal;
 }
 
+.save_text {
+	cursor: pointer;
+	color: $pastel_green;
+}
+
 .button {
 	margin: 20px 20px 20px 0px;
 	background-color: $eucalyptus;
 	color: $jet;
 	padding: 10px 50px;
-	font-size: $larger;
+	font-size: $normal;
 	border: none;
 	border-radius: 50px;
 	> span {
