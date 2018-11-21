@@ -8,7 +8,6 @@ import {
 } from '_/components/import-playlists/actions/types';
 
 import Api from '_/services/api';
-import { convertBasicSongInfoFromSpotify } from '_/services/transform-song-data';
 
 import selectSong from '_/components/dashboard/actions/select-song';
 

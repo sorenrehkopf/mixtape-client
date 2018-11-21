@@ -46,10 +46,9 @@
     "update_via_cache": "none"
   },
   "share_target": {
-    "url_template": "/addSong?songId={text}",
-    "action": "index.html",
+    "action": "/addSong",
     "params": {
-      "songId": "text"
+      "text": "songId"
     }
   }
 }
